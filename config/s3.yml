@@ -1,0 +1,12 @@
+development:
+  access_key_id: AKIAJRNJJI3MJX34DO7Q
+  secret_access_key: 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
+  bucket: eduportal
+test:
+  access_key_id: AKIAJRNJJI3MJX34DO7Q
+  secret_access_key: 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
+  bucket: eduportal
+production:
+  access_key_id: AKIAJRNJJI3MJX34DO7Q
+  secret_access_key: 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
+  bucket: eduportal
