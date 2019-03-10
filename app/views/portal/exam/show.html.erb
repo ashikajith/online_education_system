@@ -1,0 +1,59 @@
+<script type="text/javascript">
+  socket = new WebSocketRails(window.location.host + "/websocket");
+  channel = socket.subscribe("<%= @exam.id %>");
+  MathJax.Hub.Queue(["Typeset",MathJax.Hub]);
+</script>
+
+<div class="row">
+  <div class="span11 content">
+    <h2>Here is your event, Make it good</h2>
+    <p class="block-tip hide">Here is a description of the profile. Here is a description of the profile.</p>
+  </div>
+  
+  <div id="qcode" style="display:none;">
+    <p><%= @exam.id%></p>
+  </div>
+
+  <div class="span7 content">
+    <h4 class="exam-subh">Question Paper Name: <span class="exam-hval"> <%= @question_paper.name %></span> Subject : <span class="exam-hval"> <%=@question_paper.subject.name %></span></h4><hr>
+    <div class="content spinner center hide">
+      <%= image_tag("ajax-small.gif") %>
+    </div>
+    <div id="render_question" class="acontent">
+      <h4 id="quest-no">1</h4>
+      <p id="quest-txt"><%= @question.questions.html_safe %></p>   
+      <br/>
+        <% @question.options.each_with_index do |option,index| %>
+          <label id="<%= "ans#{index+1}" %>" class="radio"><input type="radio" name="answer"  value="<%= option.id %>"><%= option.answer_key.html_safe %></label> 
+        <% end %>
+    <br><br>
+    </div>
+    <div id="exam-btns" class="acontent"> 
+      <a href="#" id="prev" class="btn hide">&lt;</a>
+      <a href="#" id="mark" class="btn">Mark</a>
+      <a href="#" id="next" class="btn">&gt;</a>
+    </div>        
+  </div>    
+  <div class="span3 rsidebar">
+    <h4>Time Remaining</h4>
+    <div class="exam-timer center">       
+      <span id="timer-hr" >00</span>
+      <span id="timer-min">00</span>
+      <span id="timer-sec">00</span>
+      <br /><br /><br />
+    </div>
+    <h4>Question status</h4>
+    <div id="exam-status">
+      <% @question_status.each do |index, status| %>
+        <a id="qno-<%= index %>" href="#" class="<%= status %>"><%= index %></a>
+      <%end%>
+    </div>
+    <br />
+    <br />
+    <br>
+    <div class="center">
+      <br><br>
+      <%= link_to "Submit Event", portal_exam_complete_exam_path, class:'btn exam-submit' %>
+    </div>
+  </div>
+</div>

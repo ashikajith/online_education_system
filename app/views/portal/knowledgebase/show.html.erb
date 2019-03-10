@@ -1,0 +1,65 @@
+<div class="row workarea has-sidebar"> 
+  <%= render 'kb_sidebar' %>
+  <div class="span9 content-wrap">
+    <div class="span6 content">
+      <div class="content span6 qa-section" style="margin-left:-25px">
+        <h4>Question
+          <span class="qa-asked"> <%= timeago_tag @knowledgebase.created_at%></span>
+        </h4>
+        <div class="qa-list qa-single">
+      <div class="votes">Vote<b> <%= @knowledgebase.try(:up_count) %> </b><a href="#" id=<%= @knowledgebase.id%> class="votebtn <%= @knowledgebase.current_vote(current_user) ? 'active' : '' %>"></a>
+      </div>
+          <h4> <%=@knowledgebase.title %></h4>
+          <p> <%=@knowledgebase.question.html_safe %> </p>            
+        </div>
+      </div>
+      <br>
+      
+        <div align = "right">
+          <% if can? :destroy, @knowledgebase%>
+            <%= link_to "Delete",portal_knowledgebase_path, method:'delete', class:"btn btn-danger" %>
+          <%end%>  
+          <% if can? :update, @knowledgebase%>  
+            <%= link_to "Edit", edit_portal_knowledgebase_path, class:"btn btn-primary" %>
+          <% end %>
+          <% if can? :reply, @knowledgebase%>  
+            <%= link_to "Reply", portal_knowledgebase_reply_path(id:@knowledgebase), class:"btn btn-primary"%>
+            <%end%> 
+          <% if can? :approve_question, @knowledgebase %>
+            <%= status(@knowledgebase) %>
+          <%end%>  
+        </div>
+         
+      <div class="content span6 qa-section" style="margin-left:-25px">
+        <% if @knowledgebase.knowledgebase_answer %>
+          <h4>Answer
+            <span class="qa-asked"><%= timeago_tag @knowledgebase.knowledgebase_answer.try(:updated_at)%> </span>
+          </h4>
+          <span class ="qa-asked"><%=image_tag(@knowledgebase.knowledgebase_answer.user.user_detail.photo,size:"64x64") %>
+          <%=@knowledgebase.knowledgebase_answer.user.user_detail.full_name %> </span>
+          <div class="qa-list qa-single qa-answer">
+            <div class="vote_answer">
+              Vote<b> <%= @knowledgebase.knowledgebase_answer.try(:up_count) %> </b>
+            <a href="#" id=<%= @knowledgebase.knowledgebase_answer.id%> class="votebtn <%= @knowledgebase.knowledgebase_answer.current_vote(current_user) ? 'active' : '' %>"></a>  
+            </div>
+            <p> <%=@knowledgebase.try(:knowledgebase_answer).try(:answer).html_safe %></p>            
+          </div>
+          <br>
+        <%end%>
+      </div>
+      <%= link_to "Back", portal_knowledgebase_index_path, class:'btn btn-inverse' %>
+      </div> 
+      <div class="content span2 related">
+        <h4 class="underline">Related</h4>
+        <% @related.each do |related| %> 
+          <ul>
+            <li>
+            <b>2</b>
+            <%= link_to "#{related.title}", portal_knowledgebase_path(id:related.id) %>
+            </li>
+          </ul>
+        <%end%>  
+      </div>  
+    </div>
+  </div>   
+</div>  

@@ -1,0 +1,46 @@
+<div class="row workarea has-sidebar"> 
+    <div class="sidebar span3">
+      <ul class="sidebar-menu">
+        <li><a href="/portal/exam">Today's event</a></li>
+        <li><a href="/portal/exam">Previous events</a></li>
+        <li><a href="/portal/exam/event_performance"  id="events-perf">Event Performance</a></li>
+      </ul> 
+    </div>
+    <br>
+
+    <%= select_tag(:school_id, options_from_collection_for_select(School.all, :id, :name), prompt:"select", id:"school_filter_performance") %>
+    
+    <div class="span9">
+      <div class="span3" >
+        <h4 >Overall Performance Parameter</h4>
+        <div id = "user_list_content">
+          <div style="margin-top:7.5%; font-family:'segoe ui',tahoma,sans-serif;font-weight: normal;">
+            <table border="1" bordercolor="#fff">
+              <thead>
+                <th style="text-align:left;"> Student</th>  
+                <th> OverAll</th>
+              </thead>  
+              <tbody>
+                <% @rank.each do |name,rank| %>
+                  <tr>
+                    <td style="height:22px; width:600px;"> <%= name %> </td>
+                    <td style="height:22px; width:40px; background:<%= rank_cal(rank, @overall_parameter)%>">&nbsp</td>  
+                  </tr>
+                <% end -%>
+              </tbody>
+            </table>
+          </div>
+        </div>
+
+        <div id = "filtered_list">
+          
+
+        </div>
+      </div>
+      <div class="span5">
+        <div class="school_calendar">
+
+        </div>      
+      </div>
+    </div>
+  </div>

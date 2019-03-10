@@ -1,0 +1,17 @@
+<% if can? :create, Library %>
+  <%= link_to "Add File", new_portal_library_path, class:'btn btn-primary' %>
+<%end%>
+<div class="row">
+  <div class="content span11">
+    <h2>Heading for resource</h2>
+    <p class="block-tip">
+      Check your performance parameters filtered by subjects and year.
+    </p>
+  <% Subject.all.each do |sub| %>  
+    <div class="hana-box float-left">
+      <%= link_to "#{sub.name}", portal_library_subject_library_path(subject_id:sub.id) %>
+      <p><%=sub.description.html_safe %></p>
+    </div>
+  <%end%>        
+</div>
+  

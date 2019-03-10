@@ -1,0 +1,5 @@
+  <%= form_for @course, :url => {:action => "update"},:html => { :multipart => true } do |f| -%>
+     <%= render :partial => 'form', :locals => { :f => f } %>
+    <%= f.submit "Update", :disable_with => 'Updating...', class:"btn btn-primary" %>
+    <%= link_to "Cancel", portal_course_index_path, class:"btn btn-primary" %>
+  <% end -%>

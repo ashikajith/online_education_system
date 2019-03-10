@@ -1,0 +1,35 @@
+<div>
+  <%= form_for @school,url:{action:'update'}, method:'put' do |f| -%>
+    <%= hidden_field_tag :id, @school.id %>
+    <%= f.label :name, " Name" %>
+    <%= f.text_field :name %>
+    <%= f.label :address, "Address" %>
+    <%= f.text_area :address %>
+    <%= f.label :pincode, "Pincode" %>
+    <%= f.text_field :pincode %>
+    <%= f.label :area, "Area" %>
+    <%= f.text_field :area %>
+    <%= f.label :city, "City" %>
+    <%= f.text_field :city %>
+    <%= f.label :state, "State" %>
+    <%= f.text_field :state %>
+    <%= f.label :country, "Country" %>
+    <%= f.text_field :country %>
+    <%= f.label :landline, "Landline" %>
+    <%= f.text_field :landline %>
+    <%= f.label :mobile, "Mobile" %>
+    <%= f.text_field :mobile %>
+    <%= f.label :email, "Email" %>
+    <%= f.text_field :email %>
+    <%= f.label :website, "Website" %>
+    <%= f.text_field :website %>
+    <% if owner %>
+      <%= f.label :institution_id, "Institution Name" %>
+      <%= f.collection_select :institution_id, @institution, :id, :name %>
+    <%end %>
+    <br>
+    <%= f.submit "Update", :disable_with => 'Updating...',class:'btn btn-primary' %>
+
+    <%= link_to "Cancel", portal_schools_path, class:'btn btn-inverse' %>
+  <% end %>
+</div>  

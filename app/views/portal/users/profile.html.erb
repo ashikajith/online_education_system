@@ -1,0 +1,119 @@
+<div class="row">
+    <!-- User Form -->
+  <div class="form-horizontal">
+    <!-- Left Column -->
+    <div class="content span6">  
+      
+      <h2> Personal Information</h2>      
+
+      <div class="control-group required">
+        <label class="control-label" for="Userame">Date Of Birth</label>
+        <div class="control-label profile_field_align">
+          <%=@user.user_detail.dob %>
+        </div>
+      </div>
+      <div class="control-group required">
+        <label class="control-label" for="Userame">Gender</label>
+        <div class="control-label profile_field_align">
+          <%=@user.user_detail.try(:gender) %>
+        </div>
+      </div>
+
+      <div class="control-group required">
+        <label class="control-label" for="Userame">Guardian Name</label>
+        <div class="control-label profile_field_align">
+          <%=@user.user_detail.try(:guardian_name) %>
+        </div>
+      </div>
+
+      <div class="control-group required">
+        <label class="control-label" for="Userame">Guardian Phone Number</label>
+        <div class="control-label profile_field_align">
+          <%=@user.user_detail.try(:guardian_phone_number) %>
+        </div>
+      </div>
+
+      <div class="control-group required">
+        <label class="control-label" for="Userame">Syllabus</label>
+        <div class="control-label profile_field_align">
+          <%=@user.user_detail.try(:syllabus) %>
+        </div>
+      </div>
+
+      <div class="control-group required">
+        <label class="control-label" for="Userame">Scheme</label>
+        <div class="control-label profile_field_align">
+          <%=@user.scheme.try(:name) %>
+        </div>
+      </div>
+
+      <div class="control-group required">
+        <label class="control-label" for="Userame">State</label>
+        <div class="control-label profile_field_align">
+          <%=@user.user_detail.try(:state) %>
+        </div>
+      </div>
+      <div class="control-group required">
+        <label class="control-label" for="Userame">Country</label>
+        <div class="control-label profile_field_align">
+          <%=@user.user_detail.country %>
+        </div>
+      </div>
+
+      <h2>Residential Address</h2>
+        <div class="control-group required">
+          <label class="control-label" for="aboutyou">Address</label>
+          <div class="control-label profile_field_align">
+            <div id="aboutyou">
+              <%=@user.user_detail.address.html_safe %>
+            </div>
+          </div>
+        </div>
+
+        <div class="control-group required">
+          <label class="control-label" for="aboutyou">Pincode</label>
+          <div class="control-label profile_field_align">
+            <div id="aboutyou">
+              <%=@user.user_detail.pincode %>
+            </div>
+          </div>
+        </div>
+
+        <div class="control-group required">
+          <label class="control-label" for="aboutyou">Mobile Number</label>
+          <div class="control-label profile_field_align">
+            <div id="aboutyou">
+              <%=@user.user_detail.mobile %>
+            </div>
+          </div>
+        </div>
+
+        <div class="control-group required">
+          <label class="control-label" for="aboutyou">Landline Number</label>
+          <div class="control-label profile_field_align">
+            <div id="aboutyou">
+              <%=@user.user_detail.landline %>
+            </div>
+          </div>
+        </div>
+    </div>
+    <!-- End Left Column -->
+	<% if @user.student? %>    
+    <!-- right column   -->
+      <div class="content span4">
+        <h2>Overall Performance</h2>
+        <ul class="perf-info stat-summary">
+          <li>Questions attented <span><%= @total_answered%>/<%=@question_count %></span></li>
+          <li>L1 attented <span><%=@l1_questions_answered %>/<%=@total_l1_questions %></span></li>
+          <li>L2 attented <span><%=@l2_questions_answered %>/<%=@total_l2_questions %></span></li>
+          <li>L3 attented <span><%=@l3_questions_answered %>/<%=@total_l3_questions %></span></li>
+          <li>Accuracy <span><%=@accuracy%> %</span></li>
+        </ul>
+      </div>
+	<% end %>
+
+        <%= link_to "Edit", portal_users_profile_edit_path, class:"btn btn-primary" %>
+    </div>
+    <!-- end of right column -->
+  </div>
+</div>

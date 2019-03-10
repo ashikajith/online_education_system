@@ -1,0 +1,25 @@
+<div>	
+	<% if can? :create, Question %>
+		<%= link_to "Add new", new_portal_question_path, class:"btn btn-primary" %>
+	<%end%>
+	<table cellpadding="0" cellspacing="0" border="0" class="table table-bordered">
+		<thead>
+			<th> Question </th>
+			<th> Subject </th>
+			<th> Unit </th>
+			<th> Actions </th>
+		</thead>
+
+		<% @questions.each do |q|%>
+			<tbody>
+				<td> <%= q.questions.html_safe %> </td>
+				<td> <%= q.subject_name %> </td>
+				<td> <%= q.unit_name %> </td>
+				<td> <%= question_action(q).html_safe %> </td>
+			</tbody>
+		<%end%>
+
+	</table>
+
+	<%= paginate @questions %>
+</div>

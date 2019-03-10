@@ -1,0 +1,36 @@
+<div class = "question_list">
+	<table cellpadding="0" cellspacing="0" border="0" class="table table-bordered">
+		<thead>
+			<th> Question </th>
+			<th> Details</th>
+			<th>Tags</th>
+			<th> Select </th>
+		</thead>
+
+		<tbody>
+			<%= form_for @question_paper, url:{action:'submit_question'}, method:'post', remote:true do |f| -%>
+				<%= hidden_field_tag :id, @question_paper.id %>
+				<% @question_paper.unit.questions.each_with_index do |question,index| %>
+					<tr>
+						<% checked = true if @question_paper.questions.include? question %>
+						<td><%=index+1 %>.&nbsp<%= question.questions.html_safe %></td>
+						<% tags = question.question_tags %> 
+						<td> <%= link_to "View", portal_question_papers_view_details_path(id:question.id), remote:true, method: :post %> </td>
+								
+						<td>
+							<% tags.each do |tag| %>
+								<%= tag.name %>
+							<% end %>
+						</td>
+						<td>
+							<%= check_box_tag "question_paper[question_ids][]", "#{question.id}", checked, :id => "question_id_#{index+1}"  %>
+						</td>
+						</tr>
+		<%end%>					
+	</tbody>
+	</table>
+	<div align="right">
+		<%= f.submit "Submit", :disable_with => 'Submiting...', class:"btn btn-primary" %>
+	</div>
+	<%end%>
+</div>

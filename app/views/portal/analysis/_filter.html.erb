@@ -1,0 +1,18 @@
+<form id="user-choices" class="content span6 event-choice">
+  <select name="event" id="filter-event">
+    <option value=""> All Year</option>
+    <option value="first">First</option>
+    <option value="second">Second</option>
+  </select> 
+  <select name="subject" id="filter-subject">
+    <option value=""> All Subjects </option>
+    <% current_user.scheme.subjects.all.each do |s| %>
+      <option value="<%= s.id%>"><%=s.name%> </option>
+    <%end%>  
+  </select>     
+  <select name="duration" id="filter-duration">
+    <option value="30">Current Month</option>
+    <option value="7">Current Week</option>
+    <option value="12">Current Year</option>
+  </select>
+</form>

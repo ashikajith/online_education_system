@@ -1,0 +1,26 @@
+<div class="span7 not-composer not-rbox" style="margin-left:-0px">
+<ul class="not-view">
+  <li class="not-item">
+    <%= form_for @message, url:{action:"send_reply"}, html:{:class=>"msg-form form-horizontal", :id=>"msg-compose" }, method:'post'  do |f| -%>
+        <%= hidden_field_tag :id, @old_message.id %>
+        <div class="control-group">
+          <label class="control-label" for="msg-to">To : </label>
+          <div class="controls">
+          <%= f.email_field :email, value:@old_message.user.email, readonly:true %>
+        </div>
+      </div>
+      <hr>
+      <div class="msg-text-wrap" >
+      <textarea name="message_replies[content]" placeholder="Type your message here..."  id="qedit" rows="6"></textarea>
+      <!-- <label class="control-label" for="msg-subj">Message: </label> -->
+      </div>
+      <hr>
+      <div id="msg-controls" class=""><input type="submit" class="btn cyan" value="Send" id="msg-submit" />
+      <div id="qedit-panel"></div>
+      <a class="item-del" href="del" id="msg-del">&nbsp;</a>
+      </div>
+      <br clear="all" /> 
+      <% end -%>
+      </li>
+      </ul>
+      </div>   

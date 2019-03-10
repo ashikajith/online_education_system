@@ -1,0 +1,35 @@
+
+<table cellpadding="0" cellspacing="0" border="0" class="table table-bordered">
+  <thead>
+      <th> Field </th>
+      <th> Name</th>
+  </thead>
+
+    <tbody>
+      <tr>
+        <td>name</td>
+        <td><%=@exam_schedule.exam_date %></td>
+      </tr>
+      <tr>
+        <td>Type</td>
+        <td><%= @exam_schedule.type %></td>
+      </tr>
+      <tr>
+        <td>Question Paper</td>
+        <td><%= @exam_schedule.question_paper.name %></td>
+      </tr>
+      <tr>
+        <td>School</td>
+        <td><%= @exam_schedule.school.name %></td>
+      </tr>
+      <tr>
+        <td>Subject</td>
+        <td><%= @exam_schedule.subject.name %></td>
+      </tr>
+    </tbody>
+  </table>
+  
+  <%= link_to "show", portal_exam_schedule_path(@exam_schedule), class:"btn btn-primary" %>
+  <%= link_to "Edit", edit_portal_exam_schedule_path(@exam_schedule), class:"btn btn-primary" %>
+  <%= link_to "Delete", portal_exam_schedule_path(@exam_schedule), method:'delete', class:"btn btn-primary" %><br><br>
+  <%= link_to "Back", portal_exam_schedule_index_path, class:"btn btn-primary" %>

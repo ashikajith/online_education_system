@@ -1,0 +1,8 @@
+<div class="sidebar span3">
+  <ul class="sidebar-menu">
+    <li class="overall"><%= link_to "Overall", portal_knowledgebase_index_path %></li>
+    <% @subjects.each do |subject| %>
+      <li><a href="#<%= subject.name %>" id="<%= subject.id %>"><%= subject.name %></a></li>
+    <% end %>
+  </ul>
+</div>

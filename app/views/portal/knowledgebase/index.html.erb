@@ -1,0 +1,49 @@
+<div class="row workarea has-sidebar"> 
+<%= render 'kb_sidebar' %>
+    <div class="span9 content-wrap">
+      <div class="content span9">
+        <h2>Ask your question! We've got the right answers</h2>
+        <p class="block-tip"> You can go through the questions asked by the other students and can vote by yourself </p>
+      </div> 
+      <div class="span9 content padded">
+          <ul class="nav nav-tabs" id="kb-tabs">
+          <li class="active"><a href="#rated"  data-toggle="tab">Most Rated</a></li>
+          <li><a href="#latest" data-toggle="tab">Latest</a></li>
+          <li><a href="#unapproved" data-toggle = "tab"> Unapproved</a></li>
+          <li class="select_unit hide" id = "choose_topic_tab"><a href="#topic" data-toggle="tab">Choose a topic</a></li>
+          <li class="select_unit hide" id = "new_form_tab"><a href="#new_form" data-toggle = "tab"> Ask Question</a> </li>
+          <li><span id="selected-topic" style="display:none"><b></b><a href="#">&times;</a></span></li>
+          <!-- <li class="pull-right hide" id = "ask_question_tab"> -->
+            
+          <!-- </li> -->
+          </ul>
+        <div class="content spinner center xhide" style="display:none">
+          <%= image_tag("ajax-small.gif") %>
+        </div>
+<div id="mathjax_helper">
+          <div class="tab-content">
+            <div class="tab-pane" id="latest">
+              <%= render 'latest' %>
+            </div>
+            <div class="tab-pane active" id="rated">
+              <%= render 'rated' %>
+            </div>
+            <div class = "tab-pane" id = "unapproved">
+              <%= render 'unapproved' %>
+            </div>
+            <div class="tab-pane" id="topic">
+              <div id="unit_questions"></div>
+              <div class="unit_topics ">
+                <%= render 'units' %>
+              </div>
+            </div>
+            <div class="tab-pane" id = "new_form">
+              <div id = "knowledge_base_form"> </div>
+              <div class="qa-topics" id = "topic_form">
+                <%= render 'units_for_new_form' %>
+              </div>
+            </div>
+          </div>
+      </div>              
+    </div>
+  </div>

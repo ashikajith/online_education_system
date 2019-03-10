@@ -1,0 +1,20 @@
+<div class="tab-pane active" id="your">
+  <div>
+    <div class="span6" id="your_graph">
+      <%= high_chart("yours", @yours) %>
+      Note: Days without an event has been exempted from consideration for plotting your statistics
+    </div>
+    <%= render 'learning_curve' %>
+  </div>
+</div>
+<div class="tab-pane" id="compare">
+  <div>
+    <div class="span6" id="comparison_graph">
+      <% @comparison.each_with_index do |graph, index| %>
+        <%= high_chart("comparison_#{index}", graph) %> 
+      <% end %>
+      Note: Days without an event has been exempted from consideration for plotting your statistics
+    </div>
+    <%= render 'learning_curve' %>
+  </div>
+</div>

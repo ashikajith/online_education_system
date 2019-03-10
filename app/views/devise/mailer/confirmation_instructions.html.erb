@@ -1,0 +1,6 @@
+<%unless @resource.student? %>
+	<%= render 'others_confirmation' %>
+<%else%>
+	<%= render 'student_confirmation' %>
+<%end%>
+<p><%= link_to 'Confirm my account', confirmation_url(@resource, :confirmation_token => @resource.confirmation_token) %></p>

@@ -1,0 +1,85 @@
+<div class="btn-box-row row-fluid span12", style="padding-left:100px">
+
+	<% if can? :read, Scheme %>		
+		<a href="/portal/schemes" class="btn-box small span2" style="margin:0 60px 30px 60px;">
+			<i class="icon-road"></i>
+			<b>Schemes</b>
+		</a>
+	<%end%>	
+	
+	<% if can? :read, User %>	
+		<a href="/portal/users" class="btn-box small span2" style="margin:0 60px 30px 60px;">
+			<i class="icon-group"></i>
+			<b>Users</b>
+		</a>
+	<%end%>	
+
+	<% if can? :read, Unit %>
+		<a href="/portal/units" class="btn-box small span2" style="margin:0 60px 30px 60px;"> <i class="icon-sign-blank"></i>
+			<b>Units</b>
+		</a>
+	<%end%>
+</div>	
+<div class="btn-box-row row-fluid span12", style="padding-left:100px">
+	
+	<% if can? :read, Institution %>								
+		<a href="/portal/institutions" class="btn-box small span2" style="margin:0 60px 30px 60px;">
+			<i class="icon-globe"></i>
+			<b>Institutions</b>
+		</a>
+	<%end%>	
+
+	<% if can? :read, School %>
+		<a href="/portal/schools" class="btn-box small span2" style="margin:0 60px 30px 60px;">
+			<i class="icon-inbox large"></i>
+			<b>School</b>
+		</a>
+	<%end%>
+
+	<% if can? :read, Subject %>
+		<a href="/portal/subjects" class="btn-box small span2" style="margin:0 60px 30px 60px;">
+			<i class="icon-book"></i>
+			<b>Subject</b>
+		</a>
+	<%end%>	
+</div>
+
+<div class="btn-box-row row-fluid span12", style="padding-left:100px">	
+	
+	<% if can? :read, Question %>	
+		<a href="/portal/questions" class="btn-box small span2" style="margin:0 60px 30px 60px;"><i class=" icon-question-sign"></i>
+			<b>Questions</b>
+		</a>
+	<%end%>	
+
+	<% if can? :read, QuestionPaper %>
+		<a href="/portal/question_papers" class="btn-box small span2" style="margin:0 60px 30px 60px;"><i class=" icon-file-alt"></i>
+			<b>Question Papers</b>
+		</a>
+	<%end%>	
+	
+	<% if can? :read, QuestionSet %>
+		<a href="/portal/question_sets" class="btn-box small span2" style="margin:0 60px 30px 60px;"><i class="icon-briefcase"></i>
+			<b>Question Set</b>
+		</a>
+	<%end%>	
+</div>
+<div class="btn-box-row row-fluid span12", style="padding-left:100px">
+	<% if can? :read, QuestionTag %>
+		<a href="/portal/question_tags" class="btn-box small span2" style="margin:0 60px 30px 60px;"><i class="icon-tags"></i>
+			<b>Question Tag</b>
+		</a>
+	<%end%>
+	
+	<% if can? :manage, Course %>
+		<a href="/portal/course" class="btn-box small span2" style="margin:0 60px 30px 60px;"><i class="icon-tags"></i>
+			<b>Course</b>
+		</a>
+	<%end%>
+
+	<% if can? :manage, ExamSchedule %>
+		<a href="/portal/exam_schedule" class="btn-box small span2" style="margin:0 60px 30px 60px;"><i class="icon-tags"></i>
+			<b>ExamSchedule</b>
+		</a>
+	<%end%>
+</div>

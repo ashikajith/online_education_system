@@ -1,0 +1,114 @@
+<!DOCTYPE html>
+<html class="no-js">
+  <!--<![endif]-->
+  <head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+    <title></title>
+    <meta name="description" content="">
+    <meta name="viewport" content="width=device-width">
+
+    <title><%= "Hometutor" %></title>
+    <%= csrf_meta_tags %>
+
+    <!-- Le HTML5 shim, for IE6-8 support of HTML elements -->
+    <!--[if lt IE 9]>
+      <script src="//cdnjs.cloudflare.com/ajax/libs/html5shiv/3.6.1/html5shiv.js" type="text/javascript"></script>
+    <![endif]-->
+    <link rel="stylesheet" href="http://fonts.googleapis.com/css?family=Source+Sans+Pro:400,200,200italic,300,300italic,400italic,600,600italic,700,700italic,900,900italic">
+
+  <link rel="stylesheet" type="text/css" href="https://ajax.googleapis.com/ajax/libs/jqueryui/1.8/themes/base/jquery.ui.all.css">  
+	<link rel="stylesheet" href="/assets/main.css">
+   <style>
+      body {
+        /*padding-top: 75px;*/
+        /*padding-bottom: 40px;*/
+      }
+    </style> 
+<header class="navbar navbar-fixed-top">
+    <div style="background-color:#fff;" class="navbar-inner">
+        <div style="width:1170px;" class=" container"> 
+            <div style="width:400px;">
+            <a style="padding-bottom:10px;" class="brand" href="#"><img src="/assets/logo.gif" height="45" width="100" alt="Home Tutor"></a>
+            </div>                  
+            <!-- Navigation -->
+            <div class="nav-collapse collapse" id="navigation">
+                <ul style="padding-top:25px;padding-bottom:px;" class="nav">
+                   <li ><a style="color:#000;" href="/learn">Learn</a></li>                          
+                   <li><a style="color:#000;" href="#" class="dropdown-toggle" data-toggle ="dropdown">Features</a>
+                     <ul class="dropdown-menu" style="z-index:9999;">
+                        <li > <a href="/features/personalized_learning"> Resources</a> </li>
+                        <li> <a href="/features/analytics">Analytics</a> </li>
+                        <li> <a href="/features/knowledge_base">Knowledgebase </a> </li>
+                     </ul>
+                    </li>                            
+                   <li ><a style="color:#000;" href="/users/sign_up">Register</a></li>                        
+                   <li ><a style="color:#000;" href="/users/sign_in">Sign In</a></li>
+                </ul>
+            </div>                                        
+        </div>
+    </div>  
+</header>
+  </head>
+  <body>
+    <div>     
+      <!-- Example row of columns -->
+      <%= javascript_include_tag "application" %>
+      <div>
+        <div id="main_content">
+            <%= yield %>
+        </div>
+      </div><!--/row-->
+      <footer>
+      <section class="copyright" style="margin-bottom:0px;">           
+      <div class="footer-container">
+        <div class="footer-left">
+          <ul>
+            <li><a href="/faq">FAQ</a></li>
+            <li><a href="/terms_of_service">Terms of Service</a></li>
+            <li><a href="/privacy_policy">Privacy Policy</a></li>
+          </ul>
+        </div>
+        <div class="footer-center">
+          <ul>
+            <li>Use Chrome or Firefox browser for the best experience</li>
+            <li>© 2013 Home Tutor</li>
+          </ul>
+        </div>
+        <div class="footer-right">
+          <ul>
+            <li><h4 style="color:#fff;font-style:normal">Powered by &nbsp;<a href="http://rubykitchen.in" style="color:#fff;">Ruby Kitchen</a></h4></li>
+          </ul>
+        </div>
+      </div>          
+     </section> 
+      </footer>
+
+    </div> <!-- /container -->
+  
+    <!-- Javascripts
+    ================================================== -->
+    <!-- Placed at the end of the document so the pages load faster -->
+    
+    
+	<script  src="/assets/flexslider.js"></script>
+  <script type="text/javascript" src="/assets/localscroll.js"></script>
+  <script type="text/javascript" src="/assets/scrollto.js"></script>
+  <script type="text/javascript">
+    $('.slideshow').flexslider({
+      animation : 'slide',
+      directionNav : false,
+      controlNav : true,
+      animationSpeed: 1000,
+      slideshowSpeed: 2000
+    });
+  $('.nav').localScroll({
+    easing : 'easeInOutExpo',
+    hash : true
+    // offset : -header_height
+  });
+
+
+  </script>
+</body>
+</html>

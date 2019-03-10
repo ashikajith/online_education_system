@@ -1,0 +1,22 @@
+<% if can? :create, QuestionPaper%>
+	<%= link_to "Add new", new_portal_question_paper_path, class:"btn btn-primary" %>
+<%end%>
+<br>
+<table cellpadding="0" cellspacing="0" border="0" class="table table-bordered">
+	<thead>
+		<th> Name </th>
+		<th> Total </th>
+		<th> Actions </th>
+	</thead>
+
+	<% @question_papers.each do |q|%>
+		<tbody>
+			<td> <%= q.name %> </td>
+			<td> <%= q.total %> </td>
+			<td> <%= question_paper_action(q).html_safe %> </td>
+		</tbody>
+	<%end%>
+
+</table>
+
+<%= paginate @question_papers %>

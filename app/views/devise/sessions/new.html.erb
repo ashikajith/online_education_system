@@ -1,0 +1,76 @@
+<section class=" services" style="background:#fff;padding-bottom:0px;">             
+   <div class="container" style="padding-top:125px;">
+     <div class="hero">
+          <h3 style="padding-bottom:0px;text-align:left;position:relative;left:160px;">We've lot of exiting features for you here.</h3>
+          <div class="flexslider slideshow" style="width:265px;height:20px;position:relative;left:578px;top:-49px;">
+               <ul class="slides">
+                  <li class="slider-text">Personlized Learning</li>
+                  <li class="slider-text">Learning Resources</li>
+                  <li class="slider-text">Examinations</li>
+                  <li class="slider-text">Performance Analytics</li>
+                  <li class="slider-text">Knowledge Base</li>
+                 
+              </ul>
+          </div>                     
+      </div> 
+      <!--<h2 style="padding-bottom:40px;color:#1D57A7">Welcome</h2>-->
+      <div class="row">
+          <div class="span5 ">                                           
+               <div style="margin-top:30px;height:305px;background-image:url('/assets/nascent-app.png');background-size:380px 250px;background-repeat:no-repeat;">
+                <div class="flexslider slideshow" style="padding-left:51px;padding-top:17px;width:278px;height:20px">
+                 <ul class="slides">
+                  <li><img src="/assets/thumbs/student.png" alt=""></li>
+                  <li><img src="/assets/thumbs/resource.png" alt=""></li>
+                  <li><img src="/assets/thumbs/exams.png" alt=""></li>
+                  <li><img src="/assets/thumbs/questionsattempted.png" alt=""></li>
+                  <li><img src="/assets/thumbs/knowledgebase1.png" alt=""></li>
+                 </ul>
+                </div>
+               </div>
+          </div>
+          <div class="subnav-bar">
+            
+          </div>
+          <div class="span6 text-color offset1"> 
+          <div>
+            <div class="well span4">
+              <%= form_for(resource, :as => resource_name, :url => session_path(resource_name)) do |f| %>
+              <div>
+                <%= bootstrap_flash %>
+              </div>  
+              <div class="row">
+                <div class="control-group span6">
+                  <label class="control-label">Email</label>
+                  <%= f.email_field :email, placeholder: 'someone@example.com' %>
+                </div>
+              </div>
+
+              <div class="row">
+                <div class="control-group span3">
+                  <label class="control-label">Password</label>
+                  <%= f.password_field :password %>
+                </div>
+              </div>
+              <%= f.submit "Sign In", class:"btn" %>
+              <%end%>
+            </div>
+          </div>                     
+          </div>                    
+      </div>               
+ </div>
+</section>
+  <script type="text/javascript">
+  $(document).ready(function() {
+  function setHeight() {
+    var top = $('.navbar').outerHeight();
+    var bottom = $('footer').outerHeight();
+    var totHeight = $(window).height();
+    $('#main_content').css({ 
+      'height': totHeight - bottom +'px'
+    });
+  }
+
+  $(window).on('resize', function() { setHeight(); });
+  setHeight();
+});
+  </script>

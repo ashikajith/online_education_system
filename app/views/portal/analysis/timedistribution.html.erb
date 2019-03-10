@@ -1,0 +1,38 @@
+<div class="row workarea has-sidebar"> 
+    <div class="sidebar span3">
+      <ul class="sidebar-menu">
+        <li><a href="/portal/analysis/time_management">Time Management</a></li>
+        <li><a href="/portal/analysis/accuracy">Accuracy</a></li>
+        <li><a href="/portal/analysis/strategy">Strategy</a></li>
+        <li><a href="/portal/analysis/timedistribution" class="active">Time Distribution</a></li>
+        <li><a href="/portal/analysis/proficiency">Proficiency</a></li>
+      </ul>
+  
+    </div>
+    <div class="span10 content-wrap">        
+      <div class="content span9">
+        <h2>Time Distribution</h2>
+        <p class="block-tip">Check these parameters once in a while and do the necessary improvisations in learning.</p>
+      </div>
+      <div class="prev-only">
+        <%= render 'filter' %>
+        <div class="span2 block-tip big">
+          <h5>What to do more?</h5><p>Use the combinations of different filters for the required result.</p>
+        </div>
+      </div>
+      <div class="content span9 spinner center hide">
+        <%= image_tag 'ajax-small.gif' %>
+      </div>
+        <div class="span9 content padded">
+          <ul class="nav nav-tabs">
+          <li class="active"><a href="#your"  data-toggle="tab">Your Performance</a></li>
+          <li><a href="#compare" data-toggle="tab">Performance Comparison</a></li>
+          </ul>
+          <div class="tab-content">
+            <%= render 'graph' %>
+          </div>
+      </div>        
+    </div>
+  </div>
+
+    

@@ -1,0 +1,181 @@
+
+<div class="services" style="background:#fff;padding-bottom:0px;">
+ <div class="container" style="padding-top:125px;">
+   <div class="hero">
+      <h3 style="padding-bottom:0px;">We've some of the best schools and students enrolled with us. Today it's<span style="font-weight:normal;font-size:28px;color:#1D57A7"> your</span> turn.</h3>
+  </div>  
+
+    <div class="row">
+        <%= bootstrap_flash %>  
+      <div class="span5 text-color">
+        <div style="margin-top:30px;height:400px;background-image:url(http://portal.hometutor.org.in/assets/hero-bubble-large-75cd3b8da84f542a8ea4ed1bc0c35041.png);background-size:365px 365px;background-repeat:no-repeat;">
+          <h2 style="color:#fff;font-size:48px;line-height:55px;padding-top:75px;padding-left:76px;width:240px;">It just take a minute or two to get started!</h2>
+          </div> 
+      </div>
+  <div class="span4" >
+    <%= form_for(resource, :as => resource_name, :url => registration_path(resource_name)) do |f| %>
+    <%= f.fields_for :user_detail do |p|  %>
+    <div class="row">
+      <div class="well span6">
+        <div class="row">
+          <div class="control-group span1.5">
+            <label class="control-label">First Name</label>
+            <%= p.text_field :first_name, required: true %>
+          </div>
+          <div class="control-group span1.5">
+            <label class="control-label">Last Name</label>
+            <%= p.text_field :last_name, required: true %>
+          </div>
+        </div>
+
+        <div class="row">
+          <div class="control-group span3">
+            <label class="control-label">Email</label>
+            <%= f.email_field :email, required: true %>
+          </div>
+        </div>
+
+        <div class="row">
+          <div class="control-group span1.5">
+            <label class="control-label">Password</label>
+            <%= f.password_field :password %>
+          </div>
+          <div class="control-group span1.5">
+            <label class="control-label">Confirm Password</label>
+            <%= f.password_field :password_confirmation %>
+          </div>
+        </div>
+      </div>
+    </div>
+
+
+  <div class="row">
+    
+    <div class="well span6">
+      <h4>Personal Information</h4>
+      <div class="row">
+        <div class="control-group span1.5">
+          <label class="control-label">Date of Birth</label>
+          <%= p.text_field :dob, class:'datepicker' , required: true %>
+        </div>
+        <div class="control-group span1.5">
+          <label class="control-label">Gender</label>
+          <%= p.select :gender, [["Male", "Male"], ["Female", "Female"]]%>
+        </div>
+      </div>
+
+      <div class="row">
+        <div class="control-group span1.5">
+          <label class="control-label">Guardian Name</label>
+          <%= p.text_field :guardian_name, required: true %>
+        </div>
+      
+        <div class="control-group span1.5">
+          <label class="control-label">Guardian Phone No:</label>
+          <%= p.text_field :guardian_phone_number, required: true %>
+        </div>
+      </div>
+
+      <div class="row">
+        <div class="control-group span1.5">
+          <label class="control-label"> Syllabus</label>
+          <%= p.select :syllabus, [["CBSE", "cbse"], ["State", "state"], ["ISC", "isc"]] %>
+        </div> 
+        
+        <div class="control-group span1.5">
+          <label class="control-label"> School</label>
+          <%= f.select(:school_id, School.all.collect {|p| [ p.name, p.id ] } + [ [ 'Other', '' ] ], {:include_blank => 'select school'}, id:"school_select")%>
+        </div>
+      </div>
+      <div class="hide" id = "school_form" >
+        <div class="row">      
+          <div class="control-group span1.5">
+            <label class="control-label"> School Name</label>
+            <%= text_field_tag :school_name %>
+          </div>
+          <div class="control-group span1.5">
+            <label class="control-label"> Area</label>
+            <%= text_field_tag :school_area %>
+          </div>
+        </div>  
+      </div>
+      
+    </div>
+
+    <div class="well span6">
+      <h4>Residential Information</h4>
+      <div class="row">
+        <div class="control-group span1.5">
+          <label class="control-label">Address</label>
+          <%= p.text_area :address , required: true%>
+        </div>
+        <div class="control-group span1.5">
+          <label class="control-label">Pincode</label>
+          <%= p.text_field :pincode , required: true%>
+        </div>
+      </div>
+
+      <div class="row">
+        <div class="control-group span1.5">
+          <label class="control-label">Mobile Number</label>
+          <%= p.text_field :mobile, required: true %>
+        </div>
+      
+        <div class="control-group span1.5">
+          <label class="control-label">Landline No:</label>
+          <%= p.text_field :landline %>
+        </div>
+      </div>
+    </div>
+
+    <div class="well span5">
+      <div class="row" id ="country">
+        <div class="control-group span6">
+          <label class="control-label">Country</label>
+          <div class="controls">
+            <%= p.select :country, [["India", "india"], ["UAE", "uae"], ["Kuwait", "kuwait"]], prompt:"select" %> 
+          </div>
+        </div>
+
+        <div class="control-group span3 hide" id="state">
+          <label class="control-label">State</label>
+          <%= p.select :state, [["Inside Kerala", "kerala"], ["Outside Kerala", "outside_kerala"]], prompt:"select" %> 
+        </div>
+      </div>
+
+      <div class="row">
+        <div class="control-group span6 hide" id="user_year">
+          <label class="control-label" for="stream">Year</label>
+          <div>
+            <%= f.select :year, [["First", "first"], ["Second", "second"]], prompt:"select", prompt:"select" %>
+          </div>
+        </div>
+
+        <div class="control-group span6 hide" id="scheme">
+          <label class="control-label" for="stream">Stream</label>
+          <div>
+            <%= f.collection_select :scheme_id, Scheme.all, :id, :name, prompt:"select"  %>
+          </div>
+        </div>
+
+        <div class="control-group span6 hide" id="course">
+          <label class="control-label">Course</label>
+          <%= f.select :course_id, [["Online", "online"], ["Online with correspondence", "online_with_correspondence"], ['Crash', 'crash'], ['Correspondence', 'correspondence'],['All', 'all']], prompt:"select", prompt:"select" %>
+        </div>
+
+        <div class="control-group span6 hide" id="fees">
+          
+          Total Fee Payable is : 
+        </div>
+        <%= f.hidden_field :course_id, id:"course_id",value:'' %>
+      </div>
+    </div>
+  </div>
+  <%= f.submit "Sign Up", :disable_with => 'Submiting...', class:"btn"%>
+    <% end -%>
+    <% end -%>
+  </div>
+
+</div>
+</div>
+</div>

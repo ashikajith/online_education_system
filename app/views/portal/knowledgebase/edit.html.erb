@@ -1,0 +1,15 @@
+<div class="row workarea has-sidebar"> 
+  <%= render 'kb_sidebar' %>
+  <div class="span9 content-wrap">
+    <div class="content span4 qa-section" >
+    <%= form_for @knowledgebase, url:{action:'update'}, html:{ class:'content span4'} do |f| -%>
+    <h4><%= @knowledgebase.unit.name %></h4>
+      <%= f.hidden_field :id %>
+      <%= f.text_area :question ,placeholder:'Answer to the question', class:'span4', size:'6x10', :class=> "tinymce_editor" %>
+      <br>
+      <%= f.submit "Update", :disable_with => 'Updating...', class: 'btn btn-primary' %>
+      <%= link_to "Cancel", portal_knowledgebase_index_path, class:'btn btn-inverse' %>
+    <% end -%>
+  </div>
+  </div>
+</div> 

@@ -1,0 +1,14 @@
+<div>
+  <%= form_for @unit, url:{action:'update'}, method:'put' do |f| -%>
+  	<%= hidden_field_tag :id, @unit.id %>
+   	<%= f.label :subject_id, "Subject Name" %>
+   	<%= f.collection_select :subject_id, @subjects, :id, :name %>
+  	<%= f.label :name, "Name" %>
+    <%= f.text_field :name %>
+    <%= f.label :year, "Year" %>
+    <%= f.select :year, [["First", "first"], ["Second", "second"]] %>
+    <br>
+    <%= f.submit "Update", :disable_with => 'creating...', class:'btn btn-primary' %><br><br>
+    <%= link_to "Cancel", portal_units_path, class:'btn btn-inverse' %>
+  <% end %>
+</div>

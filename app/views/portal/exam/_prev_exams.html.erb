@@ -1,0 +1,33 @@
+<h2 id="result-title" class="prev-only">
+  <span>Subject</span>
+  <a href="#" id="sort-desc" title="Decending"> </a><a href="#" id="sort-asc" class="active" title="Ascending"> </a>
+</h2>
+  <table class="table table-striped table-bordered" id="result">
+    <thead>
+      <tr><th>Question Paper</th><th>Unit</th><th>Status</th></tr>
+    </thead>
+    <tbody>
+      <% @exams.each do |exam| %>
+      <tr>
+        <% current_exam = current_user.exams.where(question_paper_id:exam.question_paper.id).first %>
+        <% if current_user.exams.where(question_paper_id:exam.question_paper.id).first %>
+          <td> <%= link_to "#{exam.question_paper.name }", portal_exam_path(current_exam.id) %> </td>
+        <%elsif (exam.exam_date == Date.today) %> 
+          <td> 
+              <%= form_for @exam, url:{action:"create"}, method:"post" do |f| -%>
+                <%= f.hidden_field :question_paper_id, value:exam.question_paper.id %>
+                <%= f.hidden_field :exam_schedule_id, value:exam.id %>  
+                <%= f.submit "#{exam.question_paper.name }", class:"btn"%>
+              <% end -%>
+          </td>
+        <% else %>
+          <td> <%= link_to "#{exam.question_paper.name }", portal_exam_unattended_path(exam_schedule_id:exam.id)%> </td>
+        <%end%>  
+        <td><%= exam.question_paper.unit.name %></td>
+        <% status = if current_user.exams.where(question_paper_id:exam.question_paper.id).first then "Attended" else "Not Attended" end%>
+          <td class="<%if status == "Not Attended" then "red-txt" end %>"> <%= status %> </td>
+      </tr>
+      <% end %>
+    </tbody>
+  </table>
+</div>

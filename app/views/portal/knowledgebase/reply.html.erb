@@ -1,0 +1,17 @@
+<div class="row workarea has-sidebar"> 
+  <%= render 'kb_sidebar' %>
+  <div class="span9 content-wrap">
+    <div class="content span4 qa-section" >
+    <%= form_for @reply, url:{action:'submit_reply', id: @knowledgebase.id}, html:{ class:'content span4'} do |f| -%>
+    <h4>Unit:</h4> <%= @knowledgebase.unit.name %><br>
+    <h4> <i>Q: <%= @knowledgebase.question.html_safe %> </i></h4><br><br>
+      <div style="width:180%">
+        <%= f.cktext_area :answer ,placeholder:'Answer to the question' %>
+        <br>
+      </div>
+      <%= f.submit "Reply", :disable_with => 'Reply...', class: 'btn btn-primary' %>
+      <%= link_to "Cancel", portal_knowledgebase_index_path, class:'btn btn-inverse' %>
+    <% end -%>
+  </div>
+  </div>
+</div> 

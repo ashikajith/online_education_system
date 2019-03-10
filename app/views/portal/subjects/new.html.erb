@@ -1,0 +1,10 @@
+<div>  
+  <%= form_for @subject, url:{action:'create'}, method:'post' do |f| -%>
+  	<%= f.label :name, "Name" %>
+    <%= f.text_field :name %>
+    <%= f.label :description, "Description" %>
+    <%= f.text_area :description %><br><br>
+    <%= f.submit "Create", :disable_with => 'Creating...', class:'btn btn-primary' %>
+    <%= link_to "Cancel", portal_schools_path, class:'btn btn-inverse' %>
+  <% end %>
+</div>  

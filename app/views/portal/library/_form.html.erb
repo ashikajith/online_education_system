@@ -1,0 +1,23 @@
+ 
+<%= f.label :year, "Year" %>
+<%= f.select :year, [["First", "first"], ["Second", "second"]] %>
+
+<%= f.label :subject_id, "Subject" %>
+<%= f.collection_select :subject_id, @subjects, :id, :name %>
+
+<%= f.label :unit_id, "Unit" %>
+<%= f.collection_select :unit_id, @units, :id, :name %>
+
+<%= f.label :synopsis_image, "Upload Synopsis Image" %>
+<%= f.file_field :synopsis_image %>
+
+<%= f.label :synopsis_file, "Upload Synopsis File" %>
+<%= f.file_field :synopsis_file %>
+
+<%= f.label :ebook_image, "Upload Ebook Image" %>
+<%= f.file_field :ebook_image %>
+
+<%= f.label :ebook_file, "Upload Ebook File" %>
+<%= f.file_field :ebook_file %>
+
+<br><br>

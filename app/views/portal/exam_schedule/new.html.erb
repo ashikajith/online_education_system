@@ -1,0 +1,15 @@
+
+<%= form_for @exam_schedule, url:{action:'create'}, method:'post' do |f| -%>
+  School<br>
+  <%= select_tag(:school_id, options_from_collection_for_select(@schools, :id, :name), prompt:"select", id:"school_list") %><br>
+  Question Set<br>
+  <%= select_tag(:question_set_id, options_from_collection_for_select(@question_sets, :id, :name), id:"question_set_list") %><br>
+  <%= f.label :exam_date, "Exam Date" %>
+  <%= f.text_field :exam_date, value:Date.today, :class=>"datepicker" %>
+  <%= f.label :type, "Type" %>
+  <%= f.select :type, [['Daily', "daily"], ['Weekly', "weekly"], ['Monthly', "monthly"]] %>
+  <%= label_tag "[exam_schedule][interval]", "Interval" %>
+  <%= select_tag "[exam_schedule][interval]" , options_for_select([["1 day","1"],["7 days","7"],["30 days","30"]])%><br><br>
+  <%= f.submit "Create", :disable_with => 'Creating...', class:'btn btn-primary' %>
+  <%= link_to "Cancel", portal_exam_schedule_index_path, class:'btn btn-primary' %>
+<% end -%>

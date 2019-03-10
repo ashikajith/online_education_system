@@ -1,0 +1,29 @@
+<div class="row">
+    <div class="content span11">
+      <h2>Here is your event, Make it good</h2>
+      <p class="block-tip">Here is a description of the profile. Here is a description of the profile.</p>      
+    </div>
+  </div>
+
+  <div class="row">
+    <div class="content span7">
+    <% @exam_hash.each do |k,v|%>
+
+      <h4 class="exam-subh">Question Code : <span class="exam-hval"> <%= k.name%></span> Subject : <span class="exam-hval"> <%= k.subject.name %> </span></h4>
+      <%= form_for @exam, url:{action:"create"}, method:"post" do |f| -%>
+        <%= f.hidden_field :question_paper_id, value:k.id %>
+        <%= f.hidden_field :exam_schedule_id, value:v %>  
+       <%= f.submit "Start now", class:"btn"%>
+      <% end -%>
+
+      <%end%>
+    </div>
+    <div class="span3 ">
+      <div class="block-tip big">
+        <h5>What to do more?</h5><p>Select the required event from the below list.  Here is a description of the profile...</p>     
+      </div>    
+    </div>
+  </div>
+
+  <div id = "render_questions">
+  </div>

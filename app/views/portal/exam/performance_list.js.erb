@@ -1,0 +1,11 @@
+$('#user_list_content').hide();
+$('#filtered_list').html("<%=j render 'user_list' %>");
+$('.school_calendar').fullCalendar('removeEvents')
+$('.school_calendar').html('');
+$('.school_calendar').fullCalendar({
+  events: '/portal/exam/event_performance?school_id=<%= @school_id %>',
+  defaultView: 'basicWeek',
+  eventRender: function(event, element) {
+        element.find('.fc-event-title').html(event.rank+"/"+event.total).text();
+    }
+  });

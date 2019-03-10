@@ -1,0 +1,38 @@
+<div class = "well">
+	<h4>Questions set Present:</h4>
+	<div class = "question_paper">
+		<table cellpadding="0" cellspacing="0" border="0" class="table table-bordered">
+			<thead>
+				<th> Question Set Name</th>
+			</thead>
+			<tbody>
+			  <% @school.question_sets.each do |q| %>
+				    <td> <%= q.name %> </td>
+			  <%end%>
+	  	</tbody>
+	  </table>
+	</div>
+	<div class = "question_set_list well">
+		<table cellpadding="0" cellspacing="0" border="0" class="table table-bordered">
+			<thead>
+				<th> Question Sets </th>
+				<th> No of Question Papers</th>
+				<th> Select</th>
+			</thead>
+			<tbody>
+				<%= form_for @school, url:{action:'submit_question_set', controller:'schools'}, method:'post' do |f| -%>
+					<%= hidden_field_tag :id, @school.id %>
+					<% @question_sets.each_with_index do |question_set,index| %>
+					<tr>
+							<% checked = true if @school.question_sets.include? question_set %>
+							<td><%= question_set.name %></td>
+							<td><%= question_set.question_papers.count %> </td>
+							<td><%= check_box_tag "school[question_sets][]", "#{question_set.id}", checked, :id => "question_sets_#{index+1}"  %> </td>
+						<%end%>
+					</tr>
+			</tbody>
+		</table>
+		<%= f.submit "Submit", :disable_with => 'Submiting...' %>
+		<%end%>
+	</div>
+</div>

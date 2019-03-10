@@ -1,0 +1,34 @@
+<div>
+	<table cellpadding="0" cellspacing="0" border="0" class="table table-bordered">
+		<thead>
+
+			<th> Field</th>
+			<th> Value</th>
+		</thead>
+
+		<tbody>
+			<tr>
+				<td>Name</td>
+				<td><%= @unit.name %></td>
+			</tr>
+			<tr>
+				<td>Year</td>
+				<td><%= @unit.year %></td>
+			</tr>
+			<tr>
+				<td>Subject</td>
+				<td><%= @unit.subject.name %></td>
+			</tr>
+		</tbody>
+	</table>
+	<% if can? :update, Unit %>
+		<%= link_to "Edit", edit_portal_unit_path(id:@unit.id), class:"btn btn-primary" %>
+	<%end%>	
+	<% if can? :destroy, Unit %>
+		<%= link_to "Delete", portal_unit_path(@unit), method:'delete', class:"btn btn-danger", data: { confirm: 'Are you sure? Changes cant be reverted!!!'} %>
+	<%end%>	
+	<br> <br>
+	<% if can? :read, Unit %>
+		<%= link_to "Cancel", portal_units_path, class:'btn btn-inverse' %>
+	<%end%>
+</div>	

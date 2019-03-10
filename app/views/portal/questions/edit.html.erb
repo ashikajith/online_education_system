@@ -1,0 +1,34 @@
+<div>	
+	<%= form_for @question, url:{action:'update'}, method:"put" do |f| -%>
+		
+		<%= hidden_field_tag :id, @question.id %>
+		<%= f.label :questions, "Question" %>
+		<%= f.cktext_area :questions %>
+
+		<%= f.label :subject_id, "Subject Name" %>
+	  <%= f.collection_select :subject_id, @subjects, :id, :name %>
+	  <%= f.label :level, "Level" %>
+	  <%= f.select :level, [['Level 1', "l1"], ['Level 2', "l2"], ['Level 3', "l3"]]	%>
+	  <% @question_tags.each_with_index do |question_tag, index|%>
+	  <br>
+	  	<% checked = true if @question.question_tags.include? question_tag %>
+  		<%= check_box_tag 'question[question_tag_ids][]', "#{question_tag.id}", checked, :id=>"question_tag_id#{index+1}", :multiple => true %>
+      <%= question_tag.name %>
+    <%end%>
+    <br><br>
+  	<%= f.label :unit_id, "Unit Name" %>
+  	<%= f.collection_select :unit_id, @units, :id, :name %>
+	  
+	  <%= f.fields_for :options do |op,index| %>	
+			<%= op.label :answer_key, "Option#{index}" %>
+			<%= op.cktext_area :answer_key %>
+		<%end%>
+		<%= f.label :correct_option, "Correct Option" %>
+  	<%= f.select :correct_option, [['option1',"1"],['option2',"2"],['option3',"3"],['option4',"4"],['option5',"5"]] %>
+  	<%= f.label :explanation, "Explanation" %>
+  	<%= f.cktext_area :explanation %>  	
+		<br>
+		<%= f.submit "Update", :disable_with => 'Updating...',class:"btn btn-primary" %>
+		<%= link_to "Cancel", portal_questions_path, class:"btn btn-inverse" %>
+	<%end%>
+</div>		

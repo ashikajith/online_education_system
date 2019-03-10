@@ -1,0 +1,51 @@
+<div class="row workarea has-sidebar"> 
+    <div class="sidebar span3">
+      <ul class="sidebar-menu">
+        <li><a href="/portal/exam" class="active" id="events-today">Today's event</a></li>
+        <li><a href="#" id="events-prev">Previous events</a></li>
+        <li><a href="/portal/exam/event_performance" id="events-perf">Event Performance</a></li>
+      </ul>
+  
+    </div>
+    <div class="span9 content-wrap">        
+      <div class="content span9">
+        <h2>Today's Event</h2>
+        <p class="block-tip">Here you can go through the events you attented once by choosing the event and the subject</p>
+        <button class = "btn" id="opener">Open Instruction Page</button>
+      </div>
+      
+      <div id="dialog" title="Exam Instructions" class="hide">
+        <%= render 'instruction' %>
+      </div>
+
+      <div class="prev-only hide">
+        <form id="user-choices" class="content span4 event-choice">
+          <input type="hidden" id="sort" name="sort" value="asc" />
+          <input type="hidden" id="scope" name="scope" value="today" />       
+          <select name="event" id="sel-event">
+            <option>Choose an event</option>
+            <option value="daily">Daily</option>
+            <option value="weekly">Weekely</option>
+            <option value="monthly">Monthly</option>
+          </select>
+          <select name="subject" id="sel-subj" class="float-right">
+            <option> Choose a Subject </option>
+            <% Subject.all.each do |s| %>
+              <option value="<%= s.id%>"><%=s.name%> </option>
+            <%end%>  
+          </select>
+               
+        </form>
+        <div class="span3 block-tip big">
+          <h5>What to do more?</h5><p>Select the required event from the below list and click to see the detailed question paper and its answers.</p>
+        </div>
+      </div>
+      <div class="content span9 spinner center hide">
+        <%= image_tag 'ajax-small.gif' %>
+      </div>      
+      <div class="content span9 result-box">               
+        <%= render 'prev_exams' %>      
+    </div>
+  </div>
+
+    

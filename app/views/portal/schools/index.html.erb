@@ -1,0 +1,38 @@
+<div>	
+	<% if can? :create, School %>
+		<%= link_to "Add New", new_portal_school_path, class:"btn btn-primary " %>
+	<%end%>	
+	<table cellpadding="0" cellspacing="0" border="0" class="table table-bordered">
+		<thead>
+			<th> Name </th>
+			<th> Address </th>
+			<th> Area </th>
+			<th> City </th>
+			<th> Actions </th>
+		</thead>
+
+		<tbody>
+			<% @schools.each do |school| %>
+			<tr>	
+				<td> <%= school.name %>  </td>
+				<td> <%= school.address %>  </td>
+				<td> <%= school.area %>  </td>
+				<td> <%= school.city %>  </td> 
+				<td>
+					<% if can? :read, School %>
+						<%=  link_to "View", portal_school_path(id:school.id) %> |
+					<%end%>
+					<% if can? :update, School %>	
+						<%=link_to "Edit", edit_portal_school_path(id:school.id) %> |
+					<%end%>
+					<% if can? :destroy, School %>	 
+						<%= link_to "Delete", portal_school_path(school), method:'delete',data: { confirm: 'Are you sure? Changes cant be reverted!!!'} %>
+					<%end%>
+				 </td>
+			</tr>
+		<%end%>	
+		</tbody>
+	</table>
+
+	<%= paginate @schools %>
+</div>

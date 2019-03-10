@@ -1,0 +1,60 @@
+<div>
+<%= form_for @user , :url => {:action => "update"},:html => { :multipart => true } do |f| %>
+	
+	<%= hidden_field_tag :id, @user.id %>
+	<%= f.label :email, "Email" %>
+	<%= f.text_field :email, readonly:true %>	
+
+	<%= f.label :institution_id, "Institution " %>
+	<%= f.collection_select :institution_id, @institutions, :id, :name %>
+	
+	<%= f.label :role, "Role" %>
+	<%= f.select :role, @roles %>
+
+	<%= f.label :year, "Year" %>
+	<%= f.select :year, [["First", "first"], ["Second", "second"]] %>
+	
+	<%= f.label :school_id, "School " %>
+	<%= f.collection_select :school_id, @schools, :id, :name , :prompt => "select..."%>
+
+	<%= f.label :scheme_id, "Scheme " %>
+	<%= f.collection_select :scheme_id, @schemes, :id, :name, :prompt => "select..." %>
+
+	<%= f.fields_for :user_detail do |p|  %>
+		<br>
+		<%= p.label :photo, "Upload Profile photo" %>
+			<%= p.file_field :photo %> <br>	
+			<%= p.label :first_name, "First Name" %>
+			<%= p.text_field :first_name %>
+			<%= p.label :last_name, "Last Name" %>
+			<%= p.text_field :last_name %>
+			<%= p.label :gender%>
+			<%= p.select :gender, [["Male", "Male"], ["Female", "Female"]]%>
+			<%= p.label :dob, "Date Of Birth" %>
+			<%= p.text_field :dob ,class:"datepicker", placeholder:'YYYY-MM-DD' %>
+			<%= p.label :guardian_name, "Guardian Name" %>
+			<%= p.text_field :guardian_name %>
+			<%= p.label :guardian_phone_number, "Guardian Ph No" %>
+			<%= p.text_field :guardian_phone_number %>
+			<%= p.label :address, "Address" %>
+			<%= p.text_area :address, :size=>"15x8" %>
+			<%= p.label :syllabus, 'Syllabus'%>
+			<%= p.select :syllabus, [["CBSE", "cbse"], ["State", "state"], ["ISC", "isc"]] %>
+			<%= p.label :pincode, "Pincode" %>
+			<%= p.text_field :pincode %>
+			<%= p.label :state, "State" %>
+			<%= p.text_field :state %>
+			<%= p.label :country, "Country" %>
+			<%= p.text_field :country %>
+			<%= p.label :mobile, "Mobile Number" %>
+			<%= p.text_field :mobile %>
+			<%= p.label :landline, "Land line Number" %>
+			<%= p.text_field :landline %>
+	<%end%>
+		
+	<br>
+	<%= f.submit "Update", :disable_with => 'Updating...', class:'btn btn-primary'%> 	
+	<%= link_to "Cancel", portal_users_path, class:"btn btn-inverse" %>
+
+	<%end%>
+</div>	 	

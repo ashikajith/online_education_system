@@ -1,0 +1,14 @@
+$('#side_bar').hide();
+$('.spinner').show();
+$('#render_message').hide();
+$('.spinner').hide(500);
+$('#render_message').html("<%= j render 'index' %>").fadeIn(1000);
+$('#side_bar').html("<%= j render 'side_bar' %>").fadeIn(1000);
+$('#inbox').removeClass('active');
+$('#compose').removeClass('active');
+$('#sent').addClass("active");
+
+$(".not-list").on("click", "li", function() {
+  $(".not-list li").removeClass('active');
+  $(this).toggleClass("active");
+});

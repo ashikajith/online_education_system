@@ -1,0 +1,14 @@
+<div class = "question_paper">
+	<table cellpadding="0" cellspacing="0" border="0" class="table table-bordered">
+		<thead>
+			<th> Added Questions </th>
+		</thead>
+		<tbody>
+	  <% @question_paper.questions.each_with_index do |q, index| %>
+		  <tr>
+		    <td><li style="list-style:none;"><%= index+1%>.&nbsp<%= q.questions.html_safe %></li></td>
+		  </tr>  
+	  <%end%>
+	  </tbody>
+  </table>
+</div>

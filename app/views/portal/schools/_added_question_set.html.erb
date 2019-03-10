@@ -1,0 +1,15 @@
+<div class = "well">
+	<h4>Questions set Present:</h4>
+	<div class = "question_paper">
+		<table cellpadding="0" cellspacing="0" border="0" class="table table-bordered">
+			<thead>
+				<th> Question Set Name</th>
+			</thead>
+			<tbody>
+			  <% @school.question_sets.each do |q| %>
+				    <td> <%= q.name %> </td>
+			  <%end%>
+	  	</tbody>
+	  </table>
+	</div>
+</div>

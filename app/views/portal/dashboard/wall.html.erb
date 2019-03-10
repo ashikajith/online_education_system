@@ -1,0 +1,65 @@
+<div class="row">
+    <div class="content span7">
+      <h2>Catch your events here</h2>
+      <table class="eve-stat-tbl">
+        <tr><th style="width:58%">Question paper</th><th style="width:25%">Subject</th> <th style="width:auto;">Status</th></tr>
+        <% if !@exam_hash.nil? %>
+       <% @exam_hash.each do |k,v| %> 
+        <tr>
+          <td> <%=  k.name%> </td>   
+          <td><%= k.subject.name %></td>
+          <% exam = current_user.exams.where(question_paper_id:k.id).first %>
+          <% if exam %>
+            <td> <%= link_to "View Result",  portal_exam_path(exam.id) %> </td>
+          <% else %>
+            <td>
+            <%= form_for :exam, url:{action:"create", controller:"exam"}, method:"post" do |f| -%>
+              <%= f.hidden_field :question_paper_id, value:k.id %>
+              <%= f.hidden_field :exam_schedule_id, value:v %>  
+              <%= f.submit "Attend", class:"btn"%>
+            <% end -%>
+            </td>
+          <% end %>
+       <%end%>
+      <%end%> 
+      </table>
+      <br>
+      <h2>Today's Event Summary</h2>
+      <ul class="perf-info stat-summary">
+        <% if @todays_summarys.blank? %>
+          <br>
+          <div class="row wall_summary_text">
+            <p> You need to attend today's events before we can show you this</p>
+          </div>
+        <%else%>   
+        <li class="ul-head list_color">Question Paper<span style="color:#0088cc;">Marks scored</span></li> 
+          <% @todays_summarys.each do |exam| %>
+            <li> <%= exam.question_paper.name%> <span><%=exam.total_mark%>/<%=exam.question_paper.questions.count * 4 %></span></li>
+          <%end%>
+        <%end%>  
+      </ul>
+      <br>
+      <h2>Todays Performance Parameter</h2>
+      <ul class="perf-info stat-summary">
+        <%if @question_count.nil? %>
+          <br>
+          <div class="row wall_summary_text">
+            <p> You need to attend today's events before we can show you this</p>
+          </div>
+        <%else%>
+          <li class="list_color">Questions attented <span><%= @total_answered%>/<%=@question_count %></span></li>
+          <li class="list_color">L1 attented <span><%=@l1_questions_answered %>/<%=@total_l1_questions %></span></li>
+          <li class="list_color">L2 attented <span><%=@l2_questions_answered %>/<%=@total_l2_questions %></span></li>
+          <li class="list_color">L3 attented <span><%=@l3_questions_answered %>/<%=@total_l3_questions %></span></li>
+        <%end%>  
+      </ul>     
+            
+    </div>
+    <div class="content span3 wall_thoughts">
+      <h2>Thought of the day</h2>
+      <p class="wise-qoute">
+        <q>It's not that I'm so smart, it's just that I stay with problems longer.</q>
+        <span>Albert Einstien</span>
+      </p>      
+    </div>
+  </div>

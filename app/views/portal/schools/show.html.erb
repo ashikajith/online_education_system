@@ -1,0 +1,74 @@
+<div>
+	<table cellpadding="0" cellspacing="0" border="0" class="table table-bordered">
+		<thead>
+			<th> Field</th>
+			<th> Value</th>
+		</thead>
+
+		<tbody>
+			<tr>
+				<td>Name</td>
+				<td><%= @school.name %></td>
+			</tr>
+			<tr>
+				<td>Address</td>
+				<td><%= @school.address %></td>
+			</tr>
+			<tr>
+				<td>Pincode</td>
+				<td><%= @school.pincode %></td>
+			</tr>
+			<tr>
+				<td>Area</td>
+				<td><%= @school.area %></td>
+			</tr>
+			<tr>
+				<td>City</td>
+				<td><%= @school.city %></td>
+			</tr>
+			<tr>
+				<td>State</td>
+				<td><%= @school.state %></td>
+			</tr>
+			<tr>
+				<td>Country</td>
+				<td><%= @school.country %></td>
+			</tr>
+			<tr>
+				<td>Phone</td>
+				<td><%= @school.mobile %></td>
+			</tr>
+			<tr>
+				<td>Phone</td>
+				<td><%= @school.landline %></td>
+			</tr>
+			<tr>
+				<td>Institution</td>
+				<td><%= @school.institution_name %></td>
+			</tr>
+			<tr>
+				<td>Email</td>
+				<td><%= @school.email %></td>
+			</tr>
+			<tr>
+				<td>Website</td>
+				<td><%= @school.website %></td>
+			</tr>
+		</tbody>
+	</table>
+	<% if can? :update, School %>
+		<%= link_to "Edit", edit_portal_school_path(id:@school.id), class:'btn btn-primary' %>
+	<%end%>	
+	<br>
+	<br>
+	<%= link_to "Manage Question Sets", portal_schools_display_question_sets_path(school_id:@school.id), method:'post', class:'btn btn-primary', remote:true %>
+	<br><br>
+	<% if can? :read, School %>
+		<%= link_to "Back", portal_schools_path, class:'btn btn-inverse' %>
+	<%end%>
+	<% if can? :destroy, School %>
+		<%= link_to "Delete", portal_school_path(@school), method:'delete', class:'btn btn-danger',data: { confirm: 'Are you sure? Changes cant be reverted!!!'} %>
+	<%end%>	
+	<div id="school_question_sets">
+	</div>
+</div>

@@ -1,0 +1,63 @@
+ <script type="text/javascript">
+	
+$("div.qa-topics a").click(function() {
+  setActiveTopic($(this).attr("href"), $(this).text());
+  $("div.qa-topics").slideUp();
+  loadUnitTopics($(this).attr('href'));
+  return false;
+});
+
+$('#selected-topic').click(function() {
+  setActiveTopic('', '');
+  return $('#unit_questions').slideUp();
+});
+
+$('div.unit_topics a').click(function() {
+  $(".spinner").show();
+  loadUnitTopics($(this).attr('href'));
+  return false;
+});
+
+var setActiveTopic;
+
+setActiveTopic = function(id, topic) {
+  $("#selected-topic b").text(topic);
+  $("#sel-topic").val(id);
+  $('#knowledgebase_unit_id').val(id);
+  if (topic === "") {
+    $(".qa-topics").fadeIn();
+    $("#selected-topic").fadeOut();
+    return $("#unit_questions").show();
+  } else {
+    $("#selected-topic").fadeIn();
+    return $("#unit_questions").slideDown();
+  }
+};
+
+
+var loadUnitTopics;
+
+loadUnitTopics = function(unit_id) {
+  return $.ajax({
+    url: "/portal/knowledgebase/load_unit_questions",
+    data: {
+      unit_id: unit_id
+    },
+    dataType: "script"
+  }).success(function(response) {
+    $(".spinner").hide();
+    // $('#unit_questions').html("<%=j render 'unit_questions' %>");
+    return $('#unit_questions').show();
+  });
+};
+</script>
+
+<% @units.each do |unit| %>
+	<div class="qa-topics">
+  	<a href="<%= unit.id %>"><%= unit.name %></a>
+  </div>  	
+<% end %>
+
+<div id="unit_questions" class="hide">
+	
+</div>

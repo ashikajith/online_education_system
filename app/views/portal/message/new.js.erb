@@ -1,0 +1,7 @@
+$('.spinner').show();
+$('#render_message').hide();
+$('.spinner').hide(500);
+$('#render_message').html("<%= j render 'new' %>").fadeIn(1000);
+$('#compose').addClass('active');
+$('#inbox').removeClass('active');
+$('#sent').removeClass("active");

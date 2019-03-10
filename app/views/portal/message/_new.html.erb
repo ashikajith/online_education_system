@@ -1,0 +1,38 @@
+<script src="//ajax.googleapis.com/ajax/libs/angularjs/1.0.6/angular.min.js"></script>
+<script src="//ajax.googleapis.com/ajax/libs/angularjs/1.0.6/angular-resource.min.js"></script>
+<div class="span7 not-composer not-rbox" ng-app="Eduportal">
+<ul class="not-view">
+  <li class="not-item">
+    <%= form_for @message, url:{action:"create"}, html:{:class=>"msg-form form-horizontal", :id=>"msg-compose" }, method:'post'  do |f| -%>
+        <div class="control-group">
+          <label class="control-label" for="msg-to">To :</label>
+          <div class="controls" ng-controller='Autocomplete'>
+          <input auto-complete ui-items="names " ng-model="selected" placeholder="Enter name">
+         <input id="message_email" name="message[email]" value="{{selected}}" type="hidden">
+        </div>
+      </div>
+      <div class="control-group">
+        <label class="control-label" for="msg-subj">Subject : </label>
+        <div class="controls">
+          <%= f.text_field :title, placeholder:'subject', :class=>"span7" %>
+        </div>
+      </div>
+      <hr>
+      <div class="msg-text-wrap" >
+      <textarea name="message[content]" placeholder="Type your message here..."  id="qedit" rows="6"></textarea>
+      <!-- <label class="control-label" for="msg-subj">Message: </label> -->
+      
+      </div>
+      <hr>
+      <div id="msg-controls" class=""><input type="submit" class="btn cyan" value="Send" id="msg-submit" />
+      <div id="qedit-panel"></div>
+      <a class="item-del" href="del" id="msg-del">&nbsp;</a>
+      </div>
+      <br clear="all" /> 
+      <% end -%>
+      </li>
+      </ul>
+      </div>
+
+
+      

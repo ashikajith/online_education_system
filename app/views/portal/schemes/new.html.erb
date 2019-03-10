@@ -1,0 +1,16 @@
+<div >  
+  <%= form_for @scheme, url:{action:'create'}, method:'post' do |f| -%>
+  	<%= f.label :name, "Name" %>
+    <%= f.text_field :name %>
+    <% @subject.each do |sub| %>
+    	<br>
+    	<%= check_box_tag "scheme[subject_ids][]", sub.id, :id => "subject_ids_#{sub.id}" %>
+    	<%= sub.name%>
+    	<br>
+  	<% end %>
+  	<br><br>
+    <%= f.submit "Create", :disable_with => 'Creating...', class:'btn btn-primary' %>
+
+    <%= link_to "Cancel", portal_schemes_path, class:'btn btn-inverse' %>
+  <% end %>
+</div>  

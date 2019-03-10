@@ -1,0 +1,56 @@
+<div>
+	<table cellpadding="0" cellspacing="0" border="0" class="table table-bordered">
+		<thead>
+			<th> Subject</th>
+			<th>Questions </th>
+
+		</thead>
+		<tbody>
+			<tr>
+				<td><%= @question.subject.name%></td>
+				<td><%= @question.questions.html_safe%></td>
+			</tr>
+		</tbody>
+	</table>
+	Question Tag:
+	<% @question.question_tags.each do |tag| %>
+		<%= tag.name %>
+	<%end%>
+	<br>
+	Level :
+		<%= @question.try(:level) %>
+	<h3> Options of the questions</h3>
+	<table cellpadding="0" cellspacing="0" border="0" class="table table-bordered">
+		<thead>
+			<th>Options</th>
+			<th> Value</th>
+		</thead>
+
+		<tbody>
+		<% @question.options.each_with_index do |op,index| %>
+			<tr>
+				<td> Option <%="#{index+1}"%></td>
+				<td><%= op.answer_key.html_safe %></td>
+			</tr>
+		<%end%>	
+			<tr>
+				<td> Explanation</td>
+				<td><%= @question.explanation.html_safe %></td>
+			</tr>
+			<tr>
+				<td> Correct Option</td>
+				<td><%= @question.correct_option_value.html_safe %></td>
+			</tr>
+		</tbody>
+	</table>
+	<%if can? :update, Question %>
+		<%= link_to "Edit", edit_portal_question_path(id:@question.id), class:"btn btn-primary" %>
+	<%end%>
+	<% if can? :destroy, Question %>
+		<%= link_to "Delete", portal_question_path(@question), method:'delete', class:"btn btn-danger " %>
+	<%end%>
+	<br> <br>
+	<% if can? :read, Question %>
+		<%= link_to "Cancel", portal_questions_path, class:'btn btn-inverse' %>
+	<%end%>	
+</div>

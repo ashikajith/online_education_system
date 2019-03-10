@@ -1,0 +1,2 @@
+module Portal::MessageHelper
+end

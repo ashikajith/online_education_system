@@ -1,0 +1,46 @@
+<div>
+<div class="resource_content content span11 ">
+  <h2>Ask your question! We've got the right answers</h2>
+  <p class="block-tip"> You can go through the questions asked by the other students and can vote by yourself </p>
+</div>
+<div class="resource_content span11">
+  <div class="resource_year_filter">
+    <%= select_tag :year, options_for_select([["First", "first"], ["Second", "second"]]), :prompt => "--select year--" %>
+    <%= hidden_field_tag :subject_id, @sub.id %>
+  </div>
+  </div>  
+  <div id="content">
+ <% @libraries.each do |l| %>
+    <div class="resource_files_content">
+      <div class="span5"> 
+        <p class = "resource_unit_name" style="text-align:center;"><%= l.unit.name %></p>
+        <div class="resource_thumbnail span2">
+          <div class="library_image">
+            <%= image_tag(l.synopsis_image, size:"157x223", class:"resource_image") if l.synopsis_file? %><br>
+          </div>
+          <h4 style = "text-align:center;"> <%= link_to "Synopsis", l.synopsis_file.url(:original, false), class:"resource_file_links" %></h4>
+        </div>
+        <div class="resource_thumbnail span2">
+          <div class="library_image">
+            <%= image_tag(l.ebook_image, size:"157x223",class:"resource_image") if l.ebook_file? %><br>
+          </div>
+          <h4 style = "text-align:center;">
+            <%= link_to "Ebook", l.ebook_file.url(:original, false), class:"resource_file_links" %>
+          </h4>
+        </div>
+        <div class="span4" style="margin:5%;">
+        <% if can? :update, Library %>
+            <%= link_to "Edit", edit_portal_library_path(l), class:'btn' %>
+          <%end%>
+          <% if can? :destroy, Library %>    
+            <%= link_to "Delete", portal_library_path(l), method:'delete', class:'btn' %>
+          <%end%>
+          </div>
+      </div>
+    </div>     
+  <%end%>
+</div>
+<div id="filtered_content" class="resource_content">
+  
+</div>
+</div>

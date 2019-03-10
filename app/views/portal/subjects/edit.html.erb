@@ -1,0 +1,11 @@
+<div>  
+  <%= form_for @subject, url:{action:'update'}, method:'put' do |f| -%>
+  	<%= hidden_field_tag :id, @subject.id %>
+  	<%= f.label :name, "Name" %>
+    <%= f.text_field :name %><br>
+    <%= f.label :description, "Description" %>
+    <%= f.text_area :description %><br><br>
+    <%= f.submit "Update", :disable_with => 'Updating...', class:'btn btn-primary' %>
+    <%= link_to "Cancel", portal_subjects_path, class:'btn btn-inverse' %>
+  <% end %>
+</div>  

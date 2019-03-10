@@ -1,0 +1,16 @@
+<div>  
+  <%= form_for @scheme,url:{action:'update'}, method:'put' do |f| -%>
+  	<%= hidden_field_tag :id, @scheme.id %>
+  	<%= f.label :name, "Name" %>
+    <%= f.text_field :name %><br>
+    <% @subject.each do |sub| %>
+      <br>
+    	<%= check_box_tag "scheme[subject_ids][]", sub.id, :id => "subject_id_#{sub.id}" %>
+    	<%= sub.name%>
+      <br>
+  	<% end %>
+    <br><br>
+    <%= f.submit "Update", :disable_with => 'Updating...', class:"btn btn-primary" %>
+    <%= link_to "Cancel", portal_schemes_path, class:"btn btn-inverse" %>
+  <% end %>
+</div>  

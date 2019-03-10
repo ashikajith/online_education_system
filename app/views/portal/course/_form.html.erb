@@ -1,0 +1,21 @@
+<%= f.label :year, "Year" %>
+<%= f.select :year, [["First", "first"], ["Second", "second"]] %>
+
+<%= f.label :scheme_id, "Scheme" %>
+<%= f.collection_select :scheme_id, @schemes, :id, :name %>
+
+<%= f.label :country, "Country" %>
+<%= f.select :country, [["India", "india"], ["UAE", "uae"], ["Kuwait", "kuwait"]] %>
+
+<%= f.label :state, "State" %>
+<%= f.select :state, [["Kerala", "kerala"], ["Outside Kerala", "outside_kerala"]]%>
+
+<%= f.label :course_type, "Course Type" %>
+<%= f.select :course_type, [["Online", "online"], ["Online with correspondence", "online_with_correspondence"], ['Crash', 'crash'], ['Correspondence', 'correspondence'],['All', 'all']], prompt:"select" %>
+
+<%= f.label :online_status, "Online Status" %>
+<%= f.select :online_status, [["True", true], ["False", '']] %>
+
+<%= f.label :fees, "Fees" %>
+<%= f.text_field :fees %>
+<br>

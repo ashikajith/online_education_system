@@ -1,0 +1,32 @@
+<div>
+	<% if can? :create, Subject %>
+		<%= link_to "Add New", new_portal_subject_path, class:"btn btn-primary" %>
+	<% end%>
+	<table cellpadding="0" cellspacing="0" border="0" class="table table-bordered">
+		<thead>
+			<th> Name </th>
+			<th> Description</th>
+			<th> Actions </th>
+		</thead>
+
+		<tbody>
+			<% @subjects.each do |subject| %>
+			<tr>	
+				<td> <%= subject.name %>  </td>
+				<td> <%= subject.try(:description) %></td>
+				<td>
+					<% if can? :read, Subject %>	
+						<%= link_to "View", portal_subject_path(id:subject.id) %> |
+					<% end%>
+					<% if can? :update, Subject %>
+						<%=link_to "Edit", edit_portal_subject_path(id:subject.id) %> |
+					<%end%>
+					<% if can? :destroy, Subject %>	 
+						<%= link_to "Delete", portal_subject_path(subject), method:'delete', data: { confirm: 'Are you sure? Changes cant be reverted!!!'} %>
+					<%end%>	
+				</td>
+			</tr>
+		<%end%>	
+		</tbody>
+	</table>
+</div>

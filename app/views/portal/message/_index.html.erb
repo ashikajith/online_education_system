@@ -1,0 +1,36 @@
+<div class="span7 not-rbox">
+ 
+  <% if @last_message  %>
+    <ul class="not-view">
+    <% m = @last_message %>
+    <li class="not-item not-msg ">
+      <%=image_tag(m.user.user_detail.photo,size:"64x64") %>
+      <h5 class="view-from">
+        <%= m.sender_name %>
+        <div>
+          <%= timeago_tag m.created_at%>
+        </div>
+      </h5>
+      <h5 class="view-toh">
+      To: <span class="view-to"><%=m.receiver_name %></span>
+      <div class="item-btns"> 
+      <%= link_to "#{image_tag 'ico_bin.png'}".html_safe, portal_message_path(@last_message), method:'delete', :class=>"item-del" %>
+      <a class="item-reply" data-remote="true" href="/portal/message/reply/<%=m.id%>"> <%= image_tag'ico_reply.png'%> </a></div></h5><hr><div class="msg"><%= m.content%></div>
+      </li>
+      
+    <div id = "replies">
+      <% m.message_replies.each do |reply| %>
+        <li class="not-item not-msg "><%=image_tag(reply.user.user_detail.photo,size:"64x64") %><h5 class="view-from"><%= reply.sender_name %><div><%= timeago_tag reply.created_at%></div></h5><h5 class="view-toh">To: <span class="view-to"><%=m.sender_name %></span><div class="item-btns">
+        <%= link_to "#{image_tag 'ico_bin.png'}".html_safe, "/portal/message/delete_thread/#{reply.id}", method:'delete', :class=>"item-del" %>
+        <a class="item-reply" data-remote="true" href="/portal/message/reply/<%=m.id%>"> <%= image_tag'ico_reply.png'%></a></div></h5><hr><div class="msg"><%= reply.content %> </div></li>
+      <%end%>
+    </div>
+
+    <div id = "reply_form">
+      
+    </div>
+  <%else%>
+    <li style="list-style-type:none"> No Messages currently </li>
+  <%end%>    
+  </ul>
+</div>

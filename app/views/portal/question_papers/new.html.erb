@@ -1,0 +1,16 @@
+
+<%= form_for @question_paper, url:{action:'create'}, method:'post' do |f| -%>
+  
+	<%= f.label :name, "Name" %>
+	<%= f.text_field :name %>
+	<%= f.label :subject_id, "Subjects" %>
+	<%= f.collection_select :subject_id, @subjects, :id, :name, prompt:'select', id:"question_paper_subject" %>
+	<div class="hide" id = "unit_id_field">	
+		<%= f.label :unit_id, "Unit" %>
+		<%= f.collection_select :unit_id, @units, :id, :name, id:"question_paper_unit" %><br><br>
+	</div>	
+	<br>
+	<%= f.submit "Create", :disable_with => 'Creating...',class:"btn btn-primary" %>
+
+	<%= link_to "Cancel", portal_question_papers_path, class:"btn btn-inverse" %>	  
+<% end %>

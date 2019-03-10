@@ -1,0 +1,10 @@
+ <%= form_for @knowledgebase, url:{action:'create'}, html:{id:'kb-askq', class:'content span4 event-choice hide'} do |f| -%>
+  <%= f.hidden_field :unit_id, value:"" %>
+  <%= f.text_field :title, placeholder:"Title of the question" %>
+  <div style="width:180%">
+    <%= f.cktext_area :question, placeholder:'Ask your doubt', class:'span6', size:'8x12', :class=> "tinymce_editor" %>
+  </div>
+  <br>
+  <%= f.submit "Submit", :disable_with => 'Submiting...', class:"btn btn-primary" %>
+  
+<% end %>

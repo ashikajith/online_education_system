@@ -1,0 +1,14 @@
+<%= form_for @exam_schedule, url:{action:'update'}, method:'put' do |f| -%>
+  School<br>
+  <%= select_tag(:school_id, options_from_collection_for_select(@schools, :id, :name)) %><br>
+  Question Set<br>
+  <%= select_tag(:question_set_id, options_from_collection_for_select(@question_sets, :id, :name)) %><br>
+  <%= f.label :exam_date, "Exam Date" %>
+  <%= f.text_field :exam_date, :class=>"datepicker" %>
+  <%= f.label :type, "Type" %>
+  <%= f.select :type, [['Daily', "daily"], ['Weekly', "weekly"], ['Monthly', "monthly"]] %>
+  <%= label_tag :interval, "Interval" %>
+  <%= select_tag :interval , options_for_select([["1 day","1"],["7 days","7"],["30 days","30"]])%><br><br>
+  <%= f.submit "Update", :disable_with => 'Updating...', class:'btn btn-primary' %>
+  <%= link_to "Cancel", portal_exam_schedule_index_path, class:'btn btn-primary' %>
+<% end -%>

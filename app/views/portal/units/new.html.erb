@@ -1,0 +1,14 @@
+<div>
+  <%= form_for @unit, url:{action:'create'}, method:'post' do |f| -%>
+   	<%= f.label :subject_id, "Subject Name" %>
+   	<%= f.collection_select :subject_id, @subjects, :id, :name %>
+  	<%= f.label :name, "Name" %>
+    <%= f.text_field :name %>
+    <%= f.label :year, "Year" %>
+    <%= f.select :year, [["First", "first"], ["Second", "second"]] %>
+    <br>
+    <%= f.submit "Create", :disable_with => 'creating...', class:'btn btn-primary' %>
+
+    <%= link_to "Cancel", portal_units_path, class:'btn btn-primary' %>
+  <% end %>
+</div>  

@@ -1,0 +1,61 @@
+<div class="row workarea has-sidebar"> 
+    <div class="sidebar span3">
+      <ul class="sidebar-menu">
+        <li><a href="/portal/analysis/time_management">Time Management</a></li>
+        <li><a href="/portal/analysis/accuracy">Accuracy</a></li>
+        <li><a href="/portal/analysis/strategy">Strategy</a></li>
+        <!-- <li><a href="/portal/analysis/timedistribution">Time Distribution</a></li> -->
+        <li><a href="/portal/analysis/proficiency" class="active">Proficiency</a></li>
+      </ul>
+    </div>
+
+    <div class="span10 content-wrap">
+      <div class="content span9">
+      <%= select_tag :subject_id, options_from_collection_for_select(Subject.all, :id, :name), prompt:"All" %>  
+        <h2>Proficiency</h2>
+        <p class="block-tip">Check these parameters once in a while and do the necessary improvisations in learning.</p>
+      </div>
+        <div id = "content">
+          <div class="span9">
+            <ol class="rq-list">
+              <% @hash.each do |k,v| %>
+                <li style="list-style-type: none">
+                  <%=k%>: <%= if (v[0] == 0) then "No active records found" else " #{v[0]} %" end %>
+                  <br>
+                  <div class="progress active" style="background: #FFF; margin-top:10px;">
+                      <% no_record = "No Record Found" %>
+                      <div id= "proficiency_bar" class="bar" style="width: <%= v[0] %>%;"><%= if (v[0] == 0) then "" else " #{v[0]} %" end %></div>
+
+                      <a href="#" class="rq-showans"> </a>
+                </div>
+                <div class="answer hide span10" style="margin-bottom:30px;">
+                  <div class="span2">
+                    Time management:
+                    <%= if (v[0] == 0) then "" else " #{v[0]} %" end %>
+                    <div id= "proficiency_bar" class="bar" style="width: <%= v[0] %>%;">&nbsp</div>
+                  </div>
+                  <div class="span2">
+                    Accuracy:
+                    <%= if (v[1] == 0) then "" else " #{v[1]} %" end %>
+                    <div id= "proficiency_bar" class="bar" style="width: <%= v[1] %>%;">&nbsp</div>
+                  </div>
+                  <div class="span2">
+                    Strategy:
+                    <%= if (v[2] == 0) then "" else " #{v[2]} %" end %>
+                    <div id= "proficiency_bar" class="bar" style="width: <%= v[2] %>%;">&nbsp</div>
+                  </div>
+                </div>
+
+                </li>
+              <%end%>  
+              </ol>
+            </div>
+          </div>
+        </div>
+        <div id = "filtered_data">
+          
+        </div>
+    </div>
+  </div>
+
+    

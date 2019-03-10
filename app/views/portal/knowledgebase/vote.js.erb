@@ -1,0 +1,30 @@
+$('#latest').html("<%=j render 'latest' %>");
+$('#rated').html("<%=j render 'rated' %>");
+$('#<%= @knowledgebase.id%>').parent().html("<%=j render 'vote_count_question' %>");
+var castVote;
+castVote = function(id, type) {
+    var url;
+    if (type === 'question') {
+      url = "/portal/knowledgebase/vote";
+    } else {
+      url = "/portal/knowledgebase/vote_answer";
+    }
+    $(".spinner").show();
+    return $.ajax({
+      url: url,
+      data: {
+        id: id
+      },
+      dataType: "script"
+    }).success(function(response) {
+      return $(".spinner").hide();
+    });
+  };
+$('.votes a').click(function() {
+  castVote($(this).attr('id'), 'question');
+  return false;
+});
+$('.vote_answer a').click(function() {
+  castVote($(this).attr('id'), 'answer');
+  return false;
+});

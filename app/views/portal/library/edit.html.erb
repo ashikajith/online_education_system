@@ -1,0 +1,7 @@
+<div>
+  <%= form_for @library, :url => {:action => "update"},:html => { :multipart => true } do |f| -%>
+     <%= render :partial => 'form', :locals => { :f => f } %>
+    <%= f.submit "Update", :disable_with => 'Updating...', class:"btn btn-primary" %>
+    <%= link_to "Cancel", portal_library_index_path, class:"btn btn-primary" %>
+  <% end -%>
+</div>

@@ -1,0 +1,46 @@
+ <script type="text/javascript">
+	
+$("div.ask_question_units a").click(function() {
+  setActiveTopicNew($(this).attr("href"), $(this).text());
+  $("div.ask_question_units").slideUp();
+  return false;
+});
+
+$('#selected-topic').click(function() {
+  setActiveTopicNew('', '');
+  return $('#unit_questions').slideUp();
+});
+
+$('div.unit_topics a').click(function() {
+  $(".spinner").show();
+  loadUnitTopics($(this).attr('href'));
+  return false;
+});
+
+var setActiveTopicNew;
+
+setActiveTopicNew = function(id, topic) {
+  $("#selected-topic b").text(topic);
+  $("#sel-topic").val(id);
+  $('#knowledgebase_unit_id').val(id);
+  if (topic === "") {
+    $("#selected-topic").fadeOut();
+    $("#kb-askq").hide();
+    return  $(".ask_question_units").fadeIn();
+  } else {
+    $("#selected-topic").fadeIn();
+    return $("#kb-askq").show();
+  }
+};
+
+ </script>
+
+<% @units.each do |unit| %>
+  <div class="ask_question_units">	
+  	<a href="<%= unit.id %>"><%= unit.name %></a>
+  </div>	
+<% end %>
+
+<div id = "knowledge_base_form">
+
+</div>

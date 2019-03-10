@@ -1,0 +1,27 @@
+<input type="text" name="" ng-model="query"value="" placeholder="Search">
+<div>
+<% if can? :create, User %>
+	<%= link_to "Add New", new_portal_user_path, class:'btn btn-primary' %>
+<%end%>
+<table ng-controller="User" cellpadding="0" cellspacing="0" border="0" class="table table-bordered">
+	<thead>
+		<th>Sl.No</th>
+		<th> Name </th>
+		<th> Admission ID</th>
+		<th> Email </th>
+		<th> School </th>
+		<th> Actions </th>
+	</thead>
+
+	<tbody>
+		<tr ng-repeat="user in users | filter:query">
+			<td> {{ $index + 1 }}</td>
+			<td> {{user.user_detail.first_name}}</td>
+			<td> {{user.admit_id}} </td>
+			<td> {{user.email}} </td>
+			<td> {{user.school.name}} </td>
+			<td> <a href="/portal/users/{{user._id.$oid}}">View</a></td>
+		</tr>	
+	</tbody>
+</table>
+</div>

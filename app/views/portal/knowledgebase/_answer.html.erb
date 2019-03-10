@@ -1,0 +1,1 @@
+Vote<b> <%= @knowledgebase_answer.up_count %> </b><a href="#" id=<%= @knowledgebase_answer.id%> class="votebtn <%= @knowledgebase_answer.current_vote(current_user) ? 'active' : '' %>"></a>

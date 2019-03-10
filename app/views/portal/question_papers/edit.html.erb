@@ -1,0 +1,12 @@
+<%= form_for @question_paper, url:{action:'update'}, method:'put' do |f| -%>
+	<%= hidden_field_tag :id, @question_paper.id %>
+	<%= f.label :name, "Name" %>
+	<%= f.text_field :name %>
+	<%= f.label :subject_id, "Subject" %>
+	<%= f.collection_select :subject_id, @subjects, :id, :name, promp:"select", id:"question_paper_subject" %>
+	<%= f.label :unit_id, "Unit" %>
+	<%= f.collection_select :unit_id, @units, :id, :name, id:"question_paper_unit" %>
+	<br>
+	<%= f.submit "Update", :disable_with => 'Updating...', class:"btn btn-primary" %>	
+	<%= link_to "Cancel", portal_question_papers_path, class:'btn btn-inverse' %>  
+<%end%>

@@ -1,0 +1,2 @@
+module Portal::DashboardHelper
+end

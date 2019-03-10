@@ -1,0 +1,33 @@
+<div class="row workarea has-sidebar"> 
+    <div class="sidebar span3">
+      <ul class="sidebar-menu">
+        <li><a href="/portal/exam">Today's event</a></li>
+        <li><a href="/portal/exam">Previous events</a></li>
+        <li><a href="/portal/exam/event_performance" class="active" id="events-perf">Event Performance</a></li>
+      </ul> 
+    </div>
+    <div class="span9">
+      <div class="span2" >
+        <h4>Overall Performance Parameter</h4>
+          <ul class="perf-info" id="individual_performance" style="display:none">
+            <li>Questions attented<span id = "total_question_performance">-/-</span></li>
+            <li>L1 attented <span id="l1_event_performance">-/-</span></li>
+            <li>L2 attented <span id="l2_event_performance">-/-</span></li>
+            <li>L3 attented <span id="l3_event_performance">-/-</span></li>
+            <li>Accuracy   <span id="event_perf_accuracy">-/-</span></li>
+          </ul>
+          <ul class="perf-info" id="total_performance">
+            <li>Questions attented<span id = "total_question_performance"> <%="#{@total_answered}/ #{@total_questions}" %> </span></li>
+            <li>L1 attented <span id="l1_event_performance"> <%= "#{@l1_questions_answered}/ #{@l1_total }" %></span></li>
+            <li>L2 attented <span id="l2_event_performance"> <%= "#{@l2_questions_answered}/ #{@l2_total }" %> </span></li>
+            <li>L3 attented <span id="l3_event_performance"> <%= "#{@l3_questions_answered}/ #{@l3_total }" %> </span></li>
+            <li>Accuracy   <span id="event_perf_accuracy"><%= @accuracy %></span></li>
+          </ul>
+      </div>
+      <div class="span6">
+        <div class="calendar">
+
+        </div>
+      </div>
+    </div>
+  </div>

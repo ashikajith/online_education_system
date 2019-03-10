@@ -1,0 +1,18 @@
+<div class="span3 not-lbox">
+  <% if @reply_inbox_messages.count >0 || @messages.count>0 %>
+   <ul class="not-list">
+    <% if @reply_inbox_messages %>
+       <% @reply_inbox_messages.each do |l|%>  
+       <li class="<%= l.class_status%>"><a data-remote="true" href="/portal/message/<%=l.id%>"><h5><%=l.sender_name %></h5><%= truncate(l.title,:length => 17, :separator => ' ') %>.<small><%= timeago_tag l.created_at%></small></a></li>
+      <%end%>
+    <%end%>  
+    <% if @messages %>
+      <% @messages.each do |m| %>
+        <li class="<%=m.class_status %>"><a data-remote="true" href="/portal/message/<%=m.id%>"><h5><%=m.sender_name %></h5><%= truncate(m.title,:length => 17, :separator => ' ') %><small><%= timeago_tag m.created_at%></small></a></li>
+      <%end%>
+    <% end -%>
+    </ul>
+  <%else%> 
+    <p style="padding:20px 0 300px 20px;"> No Messages..!!</p>
+  <%end%> 
+</div>

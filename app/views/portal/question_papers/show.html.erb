@@ -1,0 +1,47 @@
+<table cellpadding="0" cellspacing="0" border="0" class="table table-bordered">
+	<thead>
+
+		<th> Field</th>
+		<th> Value</th>
+	</thead>
+
+	<tbody>
+		<tr>
+			<td>Question Paper name</td>
+			<td><%= @question_paper.name %></td>
+		</tr>
+		<tr>
+			<td>Subject</td>
+			<td><%= @question_paper.subject_name %></td>
+		</tr>
+		<tr>
+			<td>Unit</td>
+			<td><%= @question_paper.unit.try(:name) %></td>
+		</tr>
+	</tbody>
+</table>
+<% if can? :update,QuestionPaper %>
+	<%= link_to "Edit", edit_portal_question_paper_path(id:@question_paper.id), class:"btn btn-primary" %>
+<%end%>
+<%if can? :destroy, QuestionPaper %>
+	<%= link_to "Delete", portal_question_paper_path(@question_paper), method:'delete', class:"btn btn-danger " %>
+<%end%>	
+<br> <br>
+<% if can? :read, QuestionPaper %>
+	<%= link_to "Back", portal_question_papers_path, class:'btn btn-inverse' %>
+<%end%>
+<div id = "question_tag_div">
+	<%= render 'question_tag' %>
+</div>
+
+<div id = "updated_question_paper" >
+	<%= render 'added_questions' %>	
+</div>
+
+<div id = "question_bank">
+	<%= render 'add_question'%>
+</div>
+
+<div id = "question_details">
+	
+</div>

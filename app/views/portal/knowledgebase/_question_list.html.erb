@@ -1,0 +1,14 @@
+<div>
+  <ul class="qa-list hide" style="display: block;">
+    <% @latest.each do |kb| %>
+      <li>
+      <div class="votes"> Vote <b> 0</b><a href="#" class="votebtn"></a>
+      </div>
+      <h4> <a href="#"> <%= kb.question.html_safe %></a></h4>
+      <p> Here will be the answer of the question </p>
+      <span class = "qa-asked"> <%= timeago_tag kb.created_at %> </span>
+      <%= kb.created_at%>
+      </li>
+    <% end %>
+  </ul>
+</div>

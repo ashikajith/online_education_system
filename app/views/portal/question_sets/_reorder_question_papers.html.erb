@@ -1,0 +1,20 @@
+
+<div>
+	<table id = "sorting_table">
+		<thead>
+			<th> Question Paper Name</th>
+			<th> Unit Name </th>
+			<th> Order </th>
+		</thead>
+
+		<tbody>
+			<% @question_papers.each do |qp| %>
+				<tr>
+					 <td>	<%= qp.name %> </td>
+					 <td>	<%= qp.unit.name %> </td>
+					 <td>	<%= qp.order %> </td>
+				</tr>
+			<% end %>
+		</tbody>
+	</table>
+</div>

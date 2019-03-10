@@ -1,0 +1,70 @@
+<div>
+	<%= form_for @user , :url => {:action => "create"},:html => { :multipart => true } do |f| %>
+		
+		<%= f.label :email, "Email" %>
+		<%= f.text_field :email %>	
+
+		<%= f.label :institution_id, "Institution " %>
+		<%= f.collection_select :institution_id, @institutions, :id, :name %>
+		<br>
+		<%= f.label :role, "Role" %>
+		<%= f.select :role, @roles %>
+		<br>
+		<div id = "user_year">
+			<%= f.label :year, "Year" %>
+			<%= f.select :year, [["First", "first"], ["Second", "second"]] %>
+		</div>
+		<div id="user_school">
+		<%= f.label :school_id, "School " %>
+		<%= f.collection_select :school_id, @schools, :id, :name, :include_blank => true%>
+		</div>
+		<div id="user_scheme">
+		<%= f.label :scheme_id, "Scheme " %>
+		<%= f.collection_select :scheme_id, @schemes, :id, :name , :include_blank => true%>
+		</div>
+		<div id="user_subject" style="display:none">
+		<%= f.label :subject_id, "subject " %>
+		<%= f.collection_select :subject_id, @subjects, :id, :name , :include_blank => true%>
+		</div>
+		<%= f.fields_for :user_detail do |p|  %>
+			<br>
+			<%= p.label :photo, "Upload Profile photo" %>
+			<%= p.file_field :photo %> <br>	
+			<%= p.label :first_name, "First Name" %>
+			<%= p.text_field :first_name %>
+			<%= p.label :last_name, "Last Name" %>
+			<%= p.text_field :last_name %>
+			<%= p.label :gender%>
+			<%= p.select :gender, [["Male", "Male"], ["Female", "Female"]]%>
+			<%= p.label :dob, "Date Of Birth" %>
+			<%= p.text_field :dob ,class:"datepicker", placeholder:'YYYY-MM-DD' %>
+			<div id = "guardian_detail">	
+				<%= p.label :guardian_name, "Guardian Name" %>
+				<%= p.text_field :guardian_name %>
+				<%= p.label :guardian_phone_number, "Guardian phone Number" %>
+				<%= p.text_field :guardian_phone_number %>
+			</div>	
+			<%= p.label :address, "Address" %>
+			<%= p.text_area :address, :size=>"15x8" %>
+			<div id = "user_syllabus">
+				<%= p.label :syllabus, "Syllabus"%>
+				<%= p.select :syllabus, [["CBSE", "cbse"], ["State", "state"], ["ICSE", "icse"]] %>
+			</div>	
+			<%= p.label :pincode, "Pincode" %>
+			<%= p.text_field :pincode %>
+			<%= p.label :state, "State" %>
+			<%= p.text_field :state %>
+			<%= p.label :country, "Country" %>
+			<%= p.text_field :country %>
+			<%= p.label :mobile, "Mobile Number" %>
+			<%= p.text_field :mobile %>
+			<%= p.label :landline, "Land line Number" %>
+			<%= p.text_field :landline %>
+
+		<%end%>
+		<br>
+		<br>
+		<%= f.submit "Create", :disable_with => 'Creating...', class:'btn btn-primary'%> 	
+		<%= link_to "Cancel", portal_users_path, class:"btn btn-inverse" %>
+	<%end%>
+</div>	

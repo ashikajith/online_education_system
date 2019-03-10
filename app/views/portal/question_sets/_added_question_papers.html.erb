@@ -1,0 +1,20 @@
+
+<h4>Questions Papers Present</h4>
+<table cellpadding="0" cellspacing="0" border="0" class="table table-bordered">	
+	<thead>
+		<th> Question Paper Name</th>
+		<th> Subject </th>
+		<th> Unit </th>
+	</thead>
+	<% sorted_question_papers = @question_set.question_papers.sort_by{|obj| obj.order["#{@question_set.id}"] } %>
+  <% sorted_question_papers.each do |q| %>
+  <tbody>
+  	<tr>
+	    <td><%= q.name %></td>
+	    <td> <%= q.subject.name %> </td>
+	    <td> <%= q.unit.name %></td>
+    </tr>
+  </tbody>  
+  <%end%>
+</table>  
+

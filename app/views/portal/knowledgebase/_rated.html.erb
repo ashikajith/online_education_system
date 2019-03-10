@@ -1,0 +1,22 @@
+<script type="text/javascript">
+  MathJax.Hub.Queue(["Typeset",MathJax.Hub]);
+</script>
+
+<div>
+  <ul class="qa-list hide" style="display: block;">
+  <%if @most_rated.empty? %>
+    No Questions under this category !!!
+  <%else%>
+    <% @most_rated.each do |kb| %>
+      <li>
+      <div class="votes">Vote<b> <%= kb.up_count %> </b><a href="#" id=<%= kb.id%> class="votebtn <%= kb.current_vote(current_user) ? 'active' : '' %>"></a>
+      </div>
+      <h4><%= link_to "#{kb.title}", portal_knowledgebase_path(kb) %></h4>
+      <p><%= kb.question.html_safe %></p>
+      <span class="qa-asked">asked:<%= timeago_tag kb.created_at %></span>
+      </li>
+    <% end %>
+  <%end%>  
+  </ul>
+</div>
+

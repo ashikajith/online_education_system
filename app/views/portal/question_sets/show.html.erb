@@ -1,0 +1,36 @@
+<table cellpadding="0" cellspacing="0" border="0" class="table table-bordered">
+
+	<thead>
+		<th> Question Set Name</th>
+	</thead>
+
+	<tbody>
+		<tr>
+			<td><%= @question_set.name%></td>
+		</tr>
+	</tbody>
+</table>
+<% if can? :update, QuestionSet %>
+	<%= link_to "Edit", edit_portal_question_set_path(id:@question_set.id), class:"btn btn-primary" %>
+<%end%>
+<% if can? :destroy, QuestionSet %>
+	<%= link_to "Delete", portal_question_set_path(@question_set), method:'delete', class:"btn btn-danger " %>
+<%end%>
+<br> <br>
+<% if can? :read, QuestionSet %>
+	<%= link_to "Cancel", portal_question_sets_path, class:'btn btn-inverse' %>
+<%end%>
+
+<div id="updated_question_paper">
+	<%= render 'added_question_papers' %>
+</div>
+	
+<div id = "question_paper_order" >
+	<h4> Available Question Papers </h4>
+</div>	
+
+<% unless current_user.sadmin? || current_user.sstaff? || current_user.student? %>
+	<div id="question_paper_bank">
+		<%= render 'add_question_paper' %>
+	</div>
+<%end %>

@@ -1,0 +1,37 @@
+<div >  
+  <%= form_for @question, url:{ action:'create'}, method:"post" do |f| -%>
+  	<%= f.label :questions, "Question" %>
+  	<%= f.cktext_area :questions %>
+  	<%= f.label :subject_id, "Subject Name" %>
+    	<%= f.collection_select :subject_id, @subjects, :id, :name, prompt:"--please select--",id:"subject_question_id" %>
+    	
+      <div class="hide" id="unit_field_question">
+      	<%= f.label :unit_id, "Unit Name" %>
+      	<%= f.collection_select :unit_id, @units, :id, :name , id:"unit_question_id" %>
+      </div>
+
+      <%= f.label :level, "Level" %>
+      <%= f.select :level, [['Level 1', "l1"], ['Level 2', "l2"], ['Level 3', "l3"]] %>
+    	<br><br>
+    	<% @question_tags.each_with_index do |question_tag, index|%>
+    		<%= check_box_tag 'question[question_tag_ids][]', "#{question_tag.id}", false, :id=>"question_tag_id#{index+1}" %>
+        <%= question_tag.name %><br>
+    	<%end%>	
+      <br>
+       <%=f.fields_for :options do |op| %>
+        <%= op.label :answer_key, "Option" %>
+        <%= op.cktext_area :answer_key%>
+      <%end%>
+      
+    <%= f.label :correct_option, "Correct Option" %>
+  	<%= f.select :correct_option, [['option1',"1"],['option2',"2"],['option3',"3"],['option4',"4"],['option5',"5"]] %>
+  	<%= f.label :explanation, "Explanation" %>
+  	<%= f.cktext_area :explanation%>  
+  	<br>
+
+  	<%= f.submit "Create", :disable_with => 'Creating...',class:"btn btn-primary" %>
+  	<%= link_to "Cancel", portal_questions_path, class:"btn btn-inverse" %>
+
+  	  
+  <% end %>
+</div>  

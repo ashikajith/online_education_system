@@ -1,0 +1,134 @@
+<%= form_for @user, :url => {:action => "update_profile"},:html => { :multipart => true }, method:"post" do |f| -%>
+  
+  <%= f.fields_for :user_detail do |p| %>
+    <div class="row">
+      <!-- User Form -->
+      <form class="form-horizontal">
+      <!-- Left Column -->
+      <div class="content span5">
+        <h2>Profile</h2>
+
+        <div class="control-group required">
+          <label class="control-label" for="firstname">
+          <%= image_tag(@user.user_detail.photo(:small)) %>
+          <div class="control-label">
+            <%= p.file_field :photo %>
+          </div>
+        </div>
+
+        <div class="control-group required">
+          <label class="control-label" for="firstname">First Name</label>
+          <div class="control-label">
+            <%= p.text_field :first_name %>
+          </div>
+        </div>
+        <div class="control-group required">
+          <label class="control-label" for="lastname">Last Name</label>
+          <div class="control-label">
+            <%= p.text_field :last_name %>
+          </div>
+        </div>
+
+        <div class="control-group required">
+          
+          <label class="control-label" for="Userame">Date of Birth</label>
+          <div class="control-label">
+            <%= p.text_field :dob, class:"datepicker", placeholder:'YYYY-MM-DD' %>
+          </div>
+
+          <label class="control-label"> Gender</label>
+          <div class="control-label">
+            <%= p.select :gender, [["Male", "Male"], ["Female", "Female"]]%>
+          </div>
+
+          <label class="control-label"> Syllabus</label>
+          <div class="control-label">
+            <%= p.select :syllabus, [["CBSE", "cbse"], ["State", "state"], ["ISC", "isc"]] %>
+          </div>
+
+        </div>
+
+        <div class="control-group required">
+          <label class="control-label" for="aboutyou">Guardian Name</label>
+          <div class="control-label">
+            <div id="aboutyou">
+              <%= p.text_field :guardian_name %>
+            </div>
+          </div>
+        </div>
+
+        <div class="control-group required">
+          <label class="control-label" for="aboutyou">Guardian phone number</label>
+          <div class="control-label">
+            <div id="aboutyou">
+              <%= p.text_field :guardian_phone_number %>
+            </div>
+          </div>
+        </div>
+      </div>
+      <!-- End Left Column -->
+      
+      <!-- Right Column -->       
+      <div class="content span5">
+        <h2>Information</h2>
+        <%= link_to "Change Password", portal_users_change_password_path, class:"btn btn-primary" %>
+        <br><br>
+        <div class="control-group required ">
+          <label class="control-label" for="Email">Email</label>
+          <div class="control-label">
+            <%= f.text_field :email, readonly:true %>
+          </div>
+        </div>
+        <br/>
+
+        <div class="control-group required">
+          <label class="control-label" for="aboutyou">Address</label>
+          <div class="control-label">
+            <div id="aboutyou">
+              <%= p.text_area :address, size:"16x8" %>
+            </div>
+          </div>
+        </div>  
+
+        <div class="control-group required">
+          <label class="control-label" for="aboutyou">Pincode</label>
+          <div class="control-label">
+            <div id="aboutyou">
+              <%= p.text_field :pincode %>
+            </div>
+          </div>
+        </div>
+
+        <div class="control-group required">
+          <label class="control-label" for="Userame">Mobile Number</label>
+          <div class="control-label">
+            <%= p.text_field :mobile %>
+          </div>
+        </div>
+        <div class="control-group required">
+          <label class="control-label" for="Userame">Landline Number</label>
+          <div class="control-label">
+            <%= p.text_field :landline %>
+          </div>
+        </div>
+
+        <div class="control-group required">
+          <label class="control-label" for="Userame">State</label>
+          <div class="control-label">
+            <%= p.text_field :state %>
+          </div>
+        </div>
+        <div class="control-group required">
+          <label class="control-label" for="Userame">country</label>
+          <div class="control-label">
+            <%= p.text_field :country %>
+          </div>
+        </div>
+      </div>
+    </div>
+  <%end%>
+  <div style="padding-left:30px">
+    <%= f.submit "Update", :disable_with => 'Updating...', class:"btn btn-primary" %>
+    <%= link_to "Cancel", portal_users_profile_path, class:"btn btn-inverse"  %>
+  </div>
+<% end -%>  

@@ -1,0 +1,65 @@
+<style type="text/css">
+  #ques h3  { cursor:pointer; }
+  #qoptions li{
+    list-style: none;
+  }
+</style>
+
+<script type="text/javascript">
+$(document).ready(function() {
+
+  //send selected options via AJAX and disable it
+  $(".option").change(function () {
+    var name = $(this).attr('name')
+    $('input[name='+name+']').attr('disabled', 'disabled');
+    question = $(this).attr('name')
+    data = "&question=" + $(this).attr('name')+
+           "&answer=" + $(this).val()+
+           "&exam="+'<%= @exam.id %>'+
+           "&question_set=" + '<%= @question_set.id %>';
+    $.ajax({
+        type: "POST",
+        url: '<%= submit_answers_portal_question_set_path %>', 
+        data: data
+      })
+  });
+
+  //trigger for time
+  $('#ques h3').each(function() {
+    var tis = $(this), state = false, answer = tis.next('div').hide().css('height','auto').slideUp();
+    tis.click(function() {
+      state = !state;
+      answer.slideToggle(state);
+      tis.toggleClass('active',state);
+      $.ajax({
+        type: "POST",
+        url: '<%= portal_root_path %>', 
+        data: '<%= Time.now %>'
+      })
+    });
+  });
+});
+</script>
+
+<div id="ques">
+  <%= form_tag(:action => "submit_final")  do %>
+    <%= hidden_field_tag :exam_id, @exam.id %>
+    <%= hidden_field_tag :qset_id, @question_set.id %>
+  <% @questions.each_with_index do |question,index| %>
+    <h3>Question <%= index +1 %></h3>  
+    <div>
+      <%= question.questions.html_safe %>
+
+      <br><br>
+      <% question.options.each do |option| %>
+      <ul id="qoptions">
+        <li><%= radio_button_tag question.id , option, false,:class=>"option" %>  <%= option.html_safe %><li>
+      </ul>
+      <% end %>
+      <br><br>  
+
+    </div>
+    <% end %>
+    <%= submit_tag "Submit" %>
+  <% end %>
+</div>

@@ -1,0 +1,16 @@
+<div style="margin-top:7.5%; font-family:'segoe ui',tahoma,sans-serif;font-weight: normal;">
+  <table border="1" bordercolor="#fff">
+    <thead>
+      <th style="text-align:left;"> Student</th>  
+      <th> OverAll</th>
+    </thead>  
+    <tbody>
+      <% @rank.each do |name,rank| %>
+        <tr>
+          <td style="height:22px; width:600px;"> <%= name %> </td>
+          <td style="height:22px; width:40px; background:<%= rank_cal(rank,@overall_parameter)%>">&nbsp</td>  
+        </tr>
+      <% end -%>
+    </tbody>
+  </table>
+</div>

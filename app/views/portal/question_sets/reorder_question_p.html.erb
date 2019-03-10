@@ -1,0 +1,25 @@
+
+<div>
+	<%= form_tag(sort_portal_question_sets_path, method: :post) do  %>
+	<table id = "question_papers">
+		<thead>
+			<th> Question Paper Name</th>
+			<th> Unit Name </th>
+			<th> Order </th>
+		</thead>
+
+		<tbody>
+			  <% @question_papers.each do |qp| %>
+					<tr>
+						<td><%= qp.name %> </td>
+					  <td><%= qp.unit.name %> </td>
+					  <td><%= qp.order %> </td>
+					  <%= hidden_field_tag "seq[]", "#{qp.id}" %>
+					  <%= hidden_field_tag :qs_id, "#{@question_set.id}"%>
+					</tr>
+				<% end %>
+				<%= submit_tag "Confirm" %>
+		</tbody>
+	</table>
+	<% end %>	
+</div>

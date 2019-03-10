@@ -1,0 +1,15 @@
+<% arr = Hash.new(0) %>
+Question Tags Included
+<% @question_paper.questions.each do |question| %>
+	<% question.question_tags.each do |tag|%>
+		<% b = Hash.new(0) %>
+		<% tag.name %>
+		<% arr["#{tag.name}"] = arr["#{tag.name}"]+1 %>
+	<%end %>	
+<% end %>	
+
+<ul>
+	<% arr.each do |k,v|   %>
+		<li>	<%= "#{k} X #{v} " %></li>
+	<%end %>
+</ul>

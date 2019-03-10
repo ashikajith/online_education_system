@@ -1,0 +1,59 @@
+<table cellpadding="0" cellspacing="0" border="0" class="table table-bordered">
+	<thead>
+		<th> Subject</th>
+		<th>Questions </th>
+
+	</thead>
+
+	<tbody>
+		<tr>
+			<td><%= @question.subject.name%></td>
+			<td><%= @question.questions.html_safe%></td>
+
+		</tr>
+	</tbody>
+</table>
+Question Tag:
+
+<% @question.question_tags.each do |tag| %>
+	<%= tag.name %>
+<%end%>
+
+<h3> Options of the questions</h3>
+<table cellpadding="0" cellspacing="0" border="0" class="table table-bordered">
+	<thead>
+		<th>Options</th>
+		<th> Value</th>
+	</thead>
+
+	<tbody>
+		<tr>
+			<td> Option 1</td>
+			<td><%= @question.option1 %></td>
+		</tr>
+		<tr>
+			<td> Option 2</td>
+			<td><%= @question.option2 %></td>
+		</tr>
+		<tr>
+			<td> Option 3</td>
+			<td><%= @question.option3 %></td>
+		</tr>
+		<tr>
+			<td> Option 4</td>
+			<td><%= @question.option4 %></td>
+		</tr>
+		<tr>
+			<td> Option 5</td>
+			<td><%= @question.option5 %></td>
+		</tr>
+		<tr>
+			<td> Explanation</td>
+			<td><%= @question.explanation.html_safe %></td>
+		</tr>
+		<tr>
+			<td> Correct Option</td>
+			<td><%= @question.correct_option %></td>
+		</tr>
+	</tbody>
+</table>

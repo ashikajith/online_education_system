@@ -1,0 +1,26 @@
+<script type="text/javascript">
+  $("span.qa-asked").timeago(); 
+</script>
+
+<% if @knowledgebases.count > 0 %>
+  <script type="text/javascript">
+    MathJax.Hub.Queue(["Typeset",MathJax.Hub]);
+  </script>
+  <ul class="qa-list hide" style="display: block;">
+    <% @knowledgebases.each do |kb| %>
+        <li>
+        <div class="votes">Vote<b> <%= kb.up_count %> </b><a href="#" id=<%= kb.id%> class="votebtn <%= kb.current_vote(current_user) ? 'active' : '' %>"></a>
+        </div>
+        <h4><%= link_to "#{kb.title}", portal_knowledgebase_path(kb) %></h4>
+        <p><%= kb.question.html_safe %></p>
+        <span class="qa-asked" title="<%= kb.created_at.getutc.iso8601 %>">
+          <%= kb.created_at.to_s %>
+        </span>
+        <span class="qa-asked">asked: </span>
+        </li>
+      <% end %>
+  </ul>    
+<% else %>
+  Nothing under this topic..!!
+<% end %>
+

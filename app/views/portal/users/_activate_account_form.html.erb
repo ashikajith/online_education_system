@@ -1,0 +1,6 @@
+<%= form_for @user, url:{ action:"activate_account" } , method:'post' do |f| -%>
+  <%= hidden_field_tag :id, @user.id %>
+  <%= f.label :expiry_date, "Expiry Date" %>
+  <%= f.text_field :expiry_date, :class=>"datepicker" %>
+  <%= f.submit "Submit", :disable_with => 'Submiting...', class:"btn" %>
+<% end -%>

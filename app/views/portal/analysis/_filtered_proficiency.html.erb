@@ -1,0 +1,35 @@
+<div class="span9">
+  <ol class="rq-list">
+    <% @hash.each do |k,v| %>
+      <li style="list-style-type: none">
+        <%=k%>: <%= if (v[0] == 0) then "No active records found" else " #{v[0]} %" end %>
+        <br>
+        <div class="progress active" style="background: #FFF; margin-top:10px;">
+            <% no_record = "No Record Found" %>
+            <div id= "proficiency_bar" class="bar" style="width: <%= v[0] %>%;"><%= if (v[0] == 0) then "" else " #{v[0]} %" end %></div>
+
+            <a href="#" class="rq-showans"> </a>
+      </div>
+      <div class="answer hide span10" style="margin-bottom:30px;">
+        <div class="span2">
+          Time management:
+          <%= if (v[0] == 0) then "" else " #{v[0]} %" end %>
+          <div id= "proficiency_bar" class="bar" style="width: <%= v[0] %>%;">&nbsp</div>
+        </div>
+        <div class="span2">
+          Accuracy:
+          <%= if (v[1] == 0) then "" else " #{v[1]} %" end %>
+          <div id= "proficiency_bar" class="bar" style="width: <%= v[1] %>%;">&nbsp</div>
+        </div>
+        <div class="span2">
+          Strategy:
+          <%= if (v[2] == 0) then "" else " #{v[2]} %" end %>
+          <div id= "proficiency_bar" class="bar" style="width: <%= v[2] %>%;">&nbsp</div>
+        </div>
+      </div>
+
+      </li>
+    <%end%>  
+    </ol>
+  </div>
+</div>
